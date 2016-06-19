@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Base application theme     -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@android:color/holo_green_light</item>
+        <item name="colorPrimaryDark">@color/button_material_dark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Trigger Button             -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <style name="ButtonTrigger" type="style">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_width">100dip</item>
+        <item name="android:layout_height">100dip</item>
+        <item name="android:background">@drawable/shape_button</item>
+    </style>
+
+</resources>

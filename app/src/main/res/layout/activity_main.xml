@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.MainActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
+
+        <Button android:id="@+id/trigger_ex1_1"
+            style="@style/ButtonTrigger"
+            android:text="Shapes Tweens and Camera Directors" />
+
+        <Button android:id="@+id/trigger_ex2_1"
+            style="@style/ButtonTrigger"
+            android:text="Infrastructure" />
+
+        <Button android:id="@+id/trigger_ex3_1"
+            style="@style/ButtonTrigger"
+            android:text="Physics" />
+
+        <Button android:id="@+id/trigger_ex3_2"
+            style="@style/ButtonTrigger"
+            android:text="Physics - Pendulum" />
+
+        <Button android:id="@+id/trigger_ex4_1"
+            style="@style/ButtonTrigger"
+            android:text="Interactive - Look Around" />
+
+        <Button android:id="@+id/trigger_ex5_1"
+            style="@style/ButtonTrigger"
+            android:text="Prototype - FPS Level" />
+
+    </TableLayout>
+</RelativeLayout>
