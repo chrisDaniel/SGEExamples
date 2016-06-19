@@ -41,6 +41,9 @@ public class X2_Infrastructure extends AbstractXample {
 
         //Part 1...
         //Show How the Walls/Floor Work
+        if(SGE.properties().totalFrames() == 1){
+            SGE.camera().changeDepthFocus(1f, 30f);
+        }
         if (SGE.properties().totalFrames() == 2) {
             floor = SGE.construct().infrastructure().floor().leftX(-21f).rightX(21f).nearZ(21f).farZ(-21f).y(0).color(new SimpleColor(Color.CYAN)).build();
         }
@@ -209,5 +212,14 @@ public class X2_Infrastructure extends AbstractXample {
 
             SGE.contents().get(floor).applyProperties(props);
         }
+    }
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Handle User Actions
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    @Override
+    public void handleUserAction_move(float dx, float dy){
+        //dont react
     }
 }

@@ -56,4 +56,13 @@ public class X3_PhysicsPendulum extends AbstractXample {
             SGE.physics().applyPhysicalProperty(shape1, new PHYSPROP_Pendulum(new SimpleVertex(0f, 8f, 0f)));
         }
     }
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Handle User Actions
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    @Override
+    public void handleUserAction_move(float dx, float dy){
+        //dont react
+    }
 }

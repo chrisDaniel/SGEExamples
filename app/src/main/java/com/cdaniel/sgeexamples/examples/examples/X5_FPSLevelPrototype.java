@@ -270,18 +270,34 @@ public class X5_FPSLevelPrototype extends AbstractXample {
         SGE.physics().activator().contentId(hook).activate();
     }
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     * Handle Interaction
-     *
-     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Handle User Actions
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     private int lookingAtHook;
-    private void handleDxDy(){
 
+    @Override
+    public void handleUserAction_move(float dx, float dy){
+
+        //step 1...
+        //perform the look action in the abstract class
+        super.handleUserAction_move(dx, dy);
+
+        //step 2...
+        //evaluate what we are looking at
+        //kill this process if our view hasnt changed
+        //else do logic
         int _lookingAt = SGE.physics().performLookTest();
 
-        if(_lookingAt != lookingAtHook){
-            handleDxDy_highLight(lookingAtHook, _lookingAt);
-            lookingAtHook = _lookingAt;
+        if(_lookingAt == lookingAtHook) {
+            return;
+        }
+
+        handleDxDy_highLight(lookingAtHook, _lookingAt);
+        lookingAtHook = _lookingAt;
+
+        if(lookingAtHook >= 1){
+            handleDxDy_fly();
         }
     }
     private void handleDxDy_highLight(int removingFrom, int addingTo) {
@@ -293,9 +309,10 @@ public class X5_FPSLevelPrototype extends AbstractXample {
         if(addingTo > 0){
             SGE.tweening().killTweenForContent(addingTo);
             SGE.tweening().applyTween(addingTo, Tween_ContentColor.builder().toColor(new SimpleColor(Color.GREEN)).duration(1.5f).build());
+            handleDxDy_fly();
         }
     }
-    private void handleClick(){
+    private void handleDxDy_fly(){
 
         if(lookingAtHook <= 0){
             return;

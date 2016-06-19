@@ -31,12 +31,17 @@ public class X1_ShapesTweensDirectors extends AbstractXample {
 
     private Integer tween;
 
+
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * On Frame
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     @Override
     public void onFrame() {
+
+        if(SGE.properties().totalFrames() == 1){
+            SGE.camera().changeDepthFocus(1f, 60f);
+        }
 
         if (SGE.properties().totalFrames() == 2) {
             shape1 = SGE.construct().shapes().sphere().size(1.6f).textureId(Setup_Textures.texture1).build();
@@ -126,5 +131,14 @@ public class X1_ShapesTweensDirectors extends AbstractXample {
             DIR_FollowBehind followEarth = DIR_FollowBehind.builder().contentIdToFollow(shape2).offsetX(2f).trailDistance(25).build();
             SGE.director().queueDirector(followEarth);
         }
+    }
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Handle User Actions
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    @Override
+    public void handleUserAction_move(float dx, float dy){
+        //dont react
     }
 }

@@ -45,10 +45,10 @@ public class X3_Physics extends AbstractXample {
     @Override
     public void onFrame() {
 
-
         //Set up a Simple Environment
         if (SGE.properties().totalFrames() == 1) {
             SGE.director().queueDirector(DIR_MoveTo.builder().toX(0f).toZ(30f).toY(16).duration(5).build());
+            SGE.camera().changeDepthFocus(3f, 60f);
         }
         if(SGE.properties().totalFrames() == 2){
 
@@ -57,7 +57,7 @@ public class X3_Physics extends AbstractXample {
             wallFar = SGE.construct().infrastructure().wall().startX(leftX).endX(rightX).startZ(farZ).endZ(farZ).y(0f).height(height).textureId(Setup_Textures.texture_metalPanel).build();
             wallRight = SGE.construct().infrastructure().wall().startX(rightX).endX(rightX).startZ(nearZ).endZ(farZ).y(0f).height(height).textureId(Setup_Textures.texture_metalPanel).build();
             wallNear = SGE.construct().infrastructure().wall().startX(leftX).endX(rightX).startZ(nearZ).endZ(nearZ).y(0f).height(height).textureId(Setup_Textures.texture_metalPanel).build();
-            ceiling = SGE.construct().infrastructure().floor().leftX(leftX).rightX(rightX).nearZ(nearZ).farZ(farZ).y(height).textureId(Setup_Textures.texture_birchwood).build();
+            ceiling = SGE.construct().infrastructure().ceiling().leftX(leftX).rightX(rightX).nearZ(nearZ).farZ(farZ).y(height).textureId(Setup_Textures.texture_birchwood).build();
         }
 
         if (SGE.properties().totalFrames() == 10) {
@@ -132,5 +132,14 @@ public class X3_Physics extends AbstractXample {
                 SGE.physics().applyPhysicalProperty(s, new PHYSPROP_Gravity());
             }
         }
+    }
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Handle User Actions
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    @Override
+    public void handleUserAction_move(float dx, float dy){
+        //dont react
     }
 }

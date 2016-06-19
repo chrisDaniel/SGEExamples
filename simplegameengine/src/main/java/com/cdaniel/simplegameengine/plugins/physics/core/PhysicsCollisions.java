@@ -88,31 +88,6 @@ public class PhysicsCollisions {
                 }
             }
         }
-        /*for(PhysicsWrapper i : initiators){
-
-            for(int x =0; x<initiators.size(); x++){
-
-                PhysicsWrapper l = initiators.get(x);
-                String pairKey = processCollisions_pairKey(i, l);
-
-                if(pairKey == null){
-                    continue;
-                }
-                if(collisions.containsKey(pairKey)){
-                    continue;
-                }
-                if(newCollisions.containsKey(pairKey) || misses.containsKey(pairKey)){
-                    continue;
-                }
-
-                if(processCollisions_CheckForCollision(i, l)){
-                    newCollisions.put(pairKey, new CollidingPair(i, l));
-                }
-                else{
-                    misses.put(pairKey, 1);
-                }
-            }
-        }*/
 
         return newCollisions;
     }
@@ -126,6 +101,7 @@ public class PhysicsCollisions {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
      * Apply a Collision
      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    //todo: bug -> example: if you have two 'floors' then the collision reflection happens twice and it reflects back to original tract
     private void collisions_applyCollisions(CollidingPair pair){
 
         Vector iVelocity = pair.i.currentVelocity;

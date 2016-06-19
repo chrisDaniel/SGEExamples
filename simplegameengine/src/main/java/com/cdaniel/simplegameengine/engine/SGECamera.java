@@ -95,7 +95,7 @@ public class SGECamera implements SGEPipeline {
     //********************
     public void changeDepthFocus(float near, float far) {
 
-        if (near >= far) {
+        if (near >= far || near < 0) {
             return;
         }
         frustNear = near;
@@ -126,9 +126,9 @@ public class SGECamera implements SGEPipeline {
 
     private boolean frustInSanity(float value) {
         if (value < -1 || value > 1) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/

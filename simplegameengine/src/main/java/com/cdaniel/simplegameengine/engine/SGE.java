@@ -206,11 +206,6 @@ public class SGE implements SimpleGameEngine {
     * Engine
     *
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    public static int newContext(){
-        int contextSet = SGE.newContextSet();
-        SGE.activateContextSet(contextSet);
-        return contextSet;
-    }
     public static int initContextGL(GL10 gl){
 
         // SimpleGame Engine Context set
@@ -255,7 +250,7 @@ public class SGE implements SimpleGameEngine {
         try {
             drawIt(gl);
         } catch (Exception e) {
-            System.out.println("Draw Error!");
+            System.out.println("Draw Error!:");
             e.printStackTrace();
         }
     }

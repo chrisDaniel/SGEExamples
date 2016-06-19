@@ -35,8 +35,7 @@ public class ExampleRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 
-        SGE.newContext();
-        SGE.initContextGL(gl);
+        int newSGEcontext = SGE.initContextGL(gl);
         Setup_Textures.createTextures(gl, ExampleManager.getInstance().getContext());
         Setup_SGE.configureDevTools();
         Setup_SGE.turnOnLights(gl);
@@ -45,27 +44,17 @@ public class ExampleRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onDrawFrame(GL10 gl) {
 
-        onFrameUpdate();
+        if(SGE.properties().totalFrames() > 100f){
+
+        }
+
+        ExampleManager.getInstance().onFrame();
         SGE.draw(gl);
     }
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
 
-        HashMap<String, Object> props = new HashMap<>();
-        props.put(SimpleGameEngine.SGE_PIXEL_HEIGHT, height);
-        props.put(SimpleGameEngine.SGE_PIXEL_WIDTH, width);
-        SGE.properties().apply(props);
-    }
-
-
-
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    * Perform SGE Events
-    *
-    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    private void onFrameUpdate() {
-
-        ExampleManager.getInstance().onFrame();
+        Setup_SGE.setScreenSizing(width, height);
     }
 }

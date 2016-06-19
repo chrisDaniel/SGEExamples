@@ -40,31 +40,15 @@ public class ExampleActivity extends AppCompatActivity {
     * Other Android Stuff
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    private void attachListeners(){
+    private void attachListeners() {}
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_solarsystem_planets);
-        if(fab!=null){
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Interaction_Handler.fabClick();
-                }
-            });
-        }*/
-    }
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
-        if(exampleView !=null) {
-        }
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
-        if(exampleView !=null) {
-        }
     }
 }

@@ -47,6 +47,7 @@ public class CollisionDetector_RaySphere implements CollisionDetector {
     //  case b) b^2 - c = 0 ... sol 1 = sol 2 ... ray hits the sphere in one place
     //  case c) b^2 - c > 0 ... ray hits the sphere in multiple places
 
+    //todo - bug: collisions are detected when the object is behind the viewer
     public boolean detectCollisions(Vector ray, PhysicsWrapper wrapper2){
 
         ray = Calc_VectorMath.normalizeVector(ray);

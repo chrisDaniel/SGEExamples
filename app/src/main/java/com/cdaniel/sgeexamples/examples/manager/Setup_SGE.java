@@ -1,6 +1,9 @@
 package com.cdaniel.sgeexamples.examples.manager;
 
+import com.cdaniel.simplegameengine.core.SimpleGameEngine;
 import com.cdaniel.simplegameengine.engine.SGE;
+
+import java.util.HashMap;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -9,6 +12,18 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class Setup_SGE {
 
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Screen Size
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    public static void setScreenSizing(int width, int height){
+
+        HashMap<String, Object> props = new HashMap<>();
+        props.put(SimpleGameEngine.SGE_PIXEL_HEIGHT, height);
+        props.put(SimpleGameEngine.SGE_PIXEL_WIDTH, width);
+        SGE.properties().apply(props);
+    }
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * Lights / Fog / Background

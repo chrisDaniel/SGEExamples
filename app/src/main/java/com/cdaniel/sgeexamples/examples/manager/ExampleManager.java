@@ -43,21 +43,21 @@ public class ExampleManager {
     private static ExampleManager singleton;
     private Interaction_Handler interactionHandler;
 
-    public ExampleManager(){
+    public ExampleManager() {
         this.initializeExamples();
         this.interactionHandler = new Interaction_Handler();
     }
 
-    public static ExampleManager getInstance(){
+    public static ExampleManager getInstance() {
 
-        if(singleton == null){
+        if (singleton == null) {
             singleton = new ExampleManager();
         }
         return singleton;
     }
 
-    public Interaction_Handler interactHandler(){
-        return  interactionHandler;
+    public Interaction_Handler interactHandler() {
+        return interactionHandler;
     }
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,12 +65,24 @@ public class ExampleManager {
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     private Context currContext;
-    public void setContext(Context c){this.currContext = c;}
-    public Context getContext(){return currContext; }
+
+    public void setContext(Context c) {
+        this.currContext = c;
+    }
+
+    public Context getContext() {
+        return currContext;
+    }
 
     private ExampleView view;
-    public void setView(ExampleView view){this.view = view; }
-    public ExampleView getView(){return this.view; }
+
+    public void setView(ExampleView view) {
+        this.view = view;
+    }
+
+    public ExampleView getView() {
+        return this.view;
+    }
 
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,7 +93,7 @@ public class ExampleManager {
     private Map<Integer, AbstractXample> examplesMap = new HashMap<>();
 
 
-    private void initializeExamples(){
+    private void initializeExamples() {
 
         examplesMap.put(EX1_1, new X1_ShapesTweensDirectors());
         examplesMap.put(EX2_1, new X2_Infrastructure());
@@ -90,11 +102,13 @@ public class ExampleManager {
         examplesMap.put(EX4_1, new X4_Interactive_Camera());
         examplesMap.put(EX5_1, new X5_FPSLevelPrototype());
     }
+
     public void activateExample(int exampleId) {
 
         this.activeExampleId = exampleId;
     }
-    public AbstractXample getActiveExample(){
+
+    public AbstractXample getActiveExample() {
 
         return examplesMap.get(activeExampleId);
     }
@@ -104,11 +118,9 @@ public class ExampleManager {
     * Act on the active Example
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    public void onFrame(){
+    public void onFrame() {
         this.examplesMap.get(activeExampleId).onFrame();
     }
-
-
 
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -117,13 +129,13 @@ public class ExampleManager {
     *
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    private class Interaction_Handler {
+    public class Interaction_Handler {
 
         /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         * Constructor / Variables
         *
         * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        public Interaction_Handler() {
+        Interaction_Handler() {
 
         }
 
@@ -131,9 +143,9 @@ public class ExampleManager {
         * Accept Touch Events
         *
         * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        float mPreviousX = 0f;
-        float mPreviousY = 0f;
-        float TOUCH_SCALE_FACTOR = 1f;
+        private float mPreviousX = 0f;
+        private float mPreviousY = 0f;
+        private float TOUCH_SCALE_FACTOR = 1f;
 
         public void handleTouch(MotionEvent e) {
 
@@ -163,41 +175,11 @@ public class ExampleManager {
                     dx = dx * TOUCH_SCALE_FACTOR;
                     dy = dy * TOUCH_SCALE_FACTOR;
 
-                    touchMove_pan(dx, dy);
+                    ExampleManager.getInstance().getActiveExample().handleUserAction_move(dx, dy);
             }
 
             mPreviousX = x;
             mPreviousY = y;
-        }
-
-
-        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        * Public Handlers
-        *
-        * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        private void touchMove_pan(float dx, float dy) {
-
-            float full360 = 1200;
-            float angle = Constants.PI * (-1 * dx / full360);
-            if (angle < Constants.PI / -6f) {
-                angle = -1 * Constants.PI / 6f;
-            }
-            if (angle > Constants.PI / 6f) {
-                angle = Constants.PI / 6f;
-            }
-
-            SGE.director().queueDirector(DIR_PanLeftRight.builder().left(angle).build());
-
-            float fullUpDown = 600;
-            float delta = Constants.PI * (-1 * dy / fullUpDown);
-            if (delta < Constants.PI / -6f) {
-                delta = -1 * Constants.PI / 6f;
-            }
-            if (delta > Constants.PI / 6f) {
-                delta = Constants.PI / 6f;
-            }
-
-            SGE.director().queueDirector(DIR_PanUpDown.builder().up(delta).build());
         }
     }
 }

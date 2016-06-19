@@ -38,6 +38,7 @@ public class ExampleView extends GLSurfaceView{
     @Override
     public boolean onTouchEvent(MotionEvent e) {
 
+        ExampleManager.getInstance().interactHandler().handleTouch(e);
         return true;
     }
 
