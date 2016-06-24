@@ -13,7 +13,10 @@ import com.cdaniel.simplegameengine.plugins.director.directors_focus.DIR_PanUpDo
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_Dolly;
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_MoveTo;
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_MoveToContent;
+import com.cdaniel.simplegameengine.plugins.director.directors_strategy.DIR_Orbit;
 import com.cdaniel.simplegameengine.plugins.tween.Tween;
+import com.cdaniel.simplegameengine.plugins.tween.easers.Ease_Quadratic;
+import com.cdaniel.simplegameengine.plugins.tween.easers.Ease_Root;
 import com.cdaniel.simplegameengine.plugins.tween.tweenclasses.Tween_ContentColor;
 import com.cdaniel.simplegameengine.plugins.tween.tweenclasses.Tween_Move;
 import com.cdaniel.simplegameengine.utils.constants.Constants;
@@ -26,7 +29,7 @@ import java.util.HashMap;
 /**
  * Created by christopher.daniel on 6/2/16.
  */
-public class X5_FPSLevelPrototype extends AbstractXample {
+public class X6_FPSLevelPrototype extends AbstractXample {
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * Vars
@@ -39,7 +42,7 @@ public class X5_FPSLevelPrototype extends AbstractXample {
 
     private final float leftX  = -55f;
     private final float rightX =  55f;
-    private final float nearZ  =  20f;
+    private final float nearZ  =  25f;
     private final float farZ   = -70f;
     private final float height =  260f;
 
@@ -54,7 +57,7 @@ public class X5_FPSLevelPrototype extends AbstractXample {
 
         if (SGE.properties().totalFrames() == 1) {
             SGE.otherGL().setClearColor(fogColor);
-            SGE.otherGL().setCulling(false);
+            SGE.otherGL().setCulling(true);
             SGE.otherGL().setFogEnabled(true);
             SGE.otherGL().setFogColor(fogColor);
             SGE.otherGL().setFogDensity(.9f);
@@ -74,8 +77,13 @@ public class X5_FPSLevelPrototype extends AbstractXample {
         if(SGE.properties().totalFrames() == 5){
 
             SGE.director().killAllDirectors();
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(3).toX(-1f).toY(height/2f).toZ(19).build());
-            SGE.director().queueDirector(DIR_LookAtVertex.builder().toY(height/2f).build());
+            SGE.director().queueDirector(DIR_LookAtVertex.builder().duration(3f).toY(height/2f).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(4f).toX(-1f).toY(height/2f).toZ(19).build());
+
+        }
+        if(SGE.properties().totalFrames() == 425){
+
+            buildColumnPlatforms();
         }
     }
 
@@ -98,9 +106,9 @@ public class X5_FPSLevelPrototype extends AbstractXample {
         walls.add(SGE.construct().infrastructure().wall().startX(leftX+.01f).endX(leftX+.01f).startZ(nearZ).endZ(farZ).y(midpoint+15.5f).height(7f).thickness(.08f)
                 .texturizer(t_W2).build());
         walls.add(SGE.construct().infrastructure().wall().startX(leftX+.02f).endX(leftX+.02f).startZ(nearZ).endZ(farZ).y(midpoint+14.5f).height(1f)
-                .color(new SimpleColor(Color.HA_BLUEDEEP)).build());
+                .color(new SimpleColor(Color.HA_BLUEDEEPPURPLE)).build());
         walls.add(SGE.construct().infrastructure().wall().startX(leftX+.02f).endX(leftX+.02f).startZ(nearZ).endZ(farZ).y(midpoint+22.5f).height(1f)
-                .color(new SimpleColor(Color.HA_BLUEDEEP)).build());
+                .color(new SimpleColor(Color.HA_BLUEDEEPPURPLE)).build());
 
         walls.add(SGE.construct().infrastructure().wall().startX(leftX).endX(rightX).startZ(farZ).endZ(farZ).y(0f).height(height).thickness(.01f)
                 .texturizer(t_W1).materialEmmissive(.7f,.7f,1f,.7f).build());
@@ -110,9 +118,9 @@ public class X5_FPSLevelPrototype extends AbstractXample {
         walls.add(SGE.construct().infrastructure().wall().startX(rightX-.01f).endX(rightX-.01f).startZ(nearZ).endZ(farZ).y(midpoint+15.5f).height(7f).thickness(.08f)
                 .texturizer(t_W2).build());
         walls.add(SGE.construct().infrastructure().wall().startX(rightX-.02f).endX(rightX-.02f).startZ(nearZ).endZ(farZ).y(midpoint+14.5f).height(1f)
-                .color(new SimpleColor(Color.HA_BLUEDEEP)).build());
+                .color(new SimpleColor(Color.HA_BLUEDEEPPURPLE)).build());
         walls.add(SGE.construct().infrastructure().wall().startX(rightX-.02f).endX(rightX-.02f).startZ(nearZ).endZ(farZ).y(midpoint+22.25f).height(1f)
-                .color(new SimpleColor(Color.HA_BLUEDEEP)).build());
+                .color(new SimpleColor(Color.HA_BLUEDEEPPURPLE)).build());
 
 
         walls.add(SGE.construct().infrastructure().wall().startX(leftX).endX(rightX).startZ(nearZ).endZ(nearZ).y(0f).height(height)
@@ -180,14 +188,22 @@ public class X5_FPSLevelPrototype extends AbstractXample {
             SGE.tweening().applyTween(contId, mover);
         }
 
+        //
+        int contId = SGE.construct().signs().rectangleSign()
+                .width(15f).height(15f).center(new SimpleVertex(rightX - .06f, yMin-15f, 10f))
+                .normalPointer(new SimpleVertex(1f, 0f, 0f))
+                .color(new SimpleColor(Color.HA_BLUEDEEPPURPLE))
+                .materialEmmissive(.1f, .1f, .1f, .1f)
+                .build();
+
 
     }
     private void buildColumns() {
 
-        buildAColumns(   -10f,  0f,   0f,  8f,   height );
-        buildAColumns(    10f,  0f,   0f,  8f,   height );
+        buildAColumn(   -10f,  0f,   0f,  8f,   height );
+        buildAColumn(    10f,  0f,   0f,  8f,   height );
     }
-    private void buildAColumns(float x, float y, float z, float platformSize, float height){
+    private void buildAColumn(float x, float y, float z, float platformSize, float height){
 
         float currHeight = 0f;
         int stackCount = 0;
@@ -212,6 +228,21 @@ public class X5_FPSLevelPrototype extends AbstractXample {
 
                 currHeight = nextStep;
             }
+            else if(stackCount%5 == 9){
+                float nextStep = currHeight + 2f;
+
+                int oTube = SGE.construct().infrastructure().tube()
+                        .radius(platformSize / 2f)
+                        .fromCenter(new SimpleVertex(x, currHeight, z))
+                        .toCenter(new SimpleVertex(x, nextStep, z))
+                        .tubeType(BuilderTube.TubeType.Octagon)
+                        .textureId(Setup_Textures.obsdeck)
+                        .materialEmmissive(.8f, .8f, .8f, .9f)
+                        .build();
+                platforms.add(oTube);
+
+                currHeight = nextStep;
+            }
             else{
 
                 float nextStep = currHeight + 5f;
@@ -229,18 +260,24 @@ public class X5_FPSLevelPrototype extends AbstractXample {
                 currHeight = nextStep;
             }
         }
-
-        addColumnPlatform();
     }
 
-    private void addColumnPlatform(){
+    private void buildColumnPlatforms(){
 
-        float midPoint = height / 2f;
-        SGE.construct().infrastructure().floor().thickness(1f).y(midPoint-3f)
-                .leftX(0).rightX(7f).nearZ(1.5f).farZ(-1.5f).color(new SimpleColor(Color.WHITE)).build();
+        float columnY = height / 2f - 5f;
+        int cp1 = SGE.construct().infrastructure().floor().thickness(1f).y(columnY)
+                .leftX(7f).rightX(14f).nearZ(1.5f).farZ(-1.5f).color(new SimpleColor(Color.WHITE)).build();
 
-        SGE.construct().infrastructure().floor().thickness(1f).y(midPoint-3f)
-                .leftX(-7f).rightX(0f).nearZ(1.5f).farZ(-1.5f).color(new SimpleColor(Color.WHITE)).build();
+        int cp2 = SGE.construct().infrastructure().floor().thickness(1f).y(columnY)
+                .leftX(-14f).rightX(-7f).nearZ(1.5f).farZ(-1.5f).color(new SimpleColor(Color.WHITE)).build();
+
+        Tween_Move m1 = Tween_Move.builder().duration(3f).easer(new Ease_Quadratic())
+                .moveTo(new SimpleVertex(3.5f, SGE.contents().get(cp1).getCenter().getY(), 0f)).build();
+        SGE.tweening().applyTween(cp1, m1);
+
+        Tween_Move m2 = Tween_Move.builder().duration(3f).easer(new Ease_Quadratic())
+                .moveTo(new SimpleVertex(-3.5f, SGE.contents().get(cp1).getCenter().getY(), 0f)).build();
+        SGE.tweening().applyTween(cp2, m2);
     }
 
     private void buildHooks(){
