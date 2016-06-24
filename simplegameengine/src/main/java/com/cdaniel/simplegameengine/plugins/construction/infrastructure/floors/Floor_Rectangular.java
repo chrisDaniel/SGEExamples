@@ -75,82 +75,98 @@ public class Floor_Rectangular extends AbstractInfrastructureDrawData implements
         //Drawing 6 faces ... a Rectangle Cube structure
 
         //Side 1...
-        //the left face
-        this.vertices.push(new SimpleVertex( xLeft,  yBottom,  zNear));
-        this.vertices.push(new SimpleVertex( xLeft,  yTop,     zNear));
-        this.vertices.push(new SimpleVertex( xLeft,  yBottom,  zFar));
-        this.vertices.push(new SimpleVertex( xLeft,  yTop,     zFar));
-
-        this.drawOrder.push(0);this.drawOrder.push(2);this.drawOrder.push(1);
-        this.drawOrder.push(1);this.drawOrder.push(2);this.drawOrder.push(3);
-
-        this.normalCollection.push(-1, 0, 0);
-        this.normalCollection.push(-1, 0, 0);
-
-        this.textureCollection.push(0, 1, 0); this.textureCollection.push(0, 0, 0);
-        this.textureCollection.push(1, 1, 0); this.textureCollection.push(1, 0, 0);
-
-        //Side 2...
-        //the right face
-        this.vertices.push(new SimpleVertex( xRight,  yBottom, zNear));
-        this.vertices.push(new SimpleVertex( xRight,  yTop,    zNear));
-        this.vertices.push(new SimpleVertex( xRight,  yBottom, zFar));
-        this.vertices.push(new SimpleVertex( xRight,  yTop,    zFar));
-
-        this.drawOrder.push(0+4);this.drawOrder.push(2+4);this.drawOrder.push(1+4);
-        this.drawOrder.push(1+4);this.drawOrder.push(2+4);this.drawOrder.push(3+4);
-
-        this.normalCollection.push(1, 0, 0);
-        this.normalCollection.push(1, 0, 0);
-
-        this.textureCollection.push(0, 1, 0); this.textureCollection.push(0, 0, 0);
-        this.textureCollection.push(1, 1, 0); this.textureCollection.push(1, 0, 0);
-
-
-        //Side 3...
         //the top
         this.vertices.push(new SimpleVertex( xLeft,   yTop,  zNear));
         this.vertices.push(new SimpleVertex( xRight,  yTop,  zNear));
-        this.vertices.push(new SimpleVertex( xLeft,   yTop,  zFar));
         this.vertices.push(new SimpleVertex( xRight,  yTop,  zFar));
+        this.vertices.push(new SimpleVertex( xLeft,   yTop,  zFar));
 
-        this.drawOrder.push(0+8);this.drawOrder.push(2+8);this.drawOrder.push(1+8);
-        this.drawOrder.push(1+8);this.drawOrder.push(2+8);this.drawOrder.push(3+8);
+        this.drawOrder.push(0);this.drawOrder.push(2);this.drawOrder.push(3);
+        this.drawOrder.push(0);this.drawOrder.push(1);this.drawOrder.push(2);
 
-        this.normalCollection.push(0, 1, 0);
-        this.normalCollection.push(0, 1, 0);
+        this.normalCollection.push(0, 1, 0);this.normalCollection.push(0, 1, 0);
+        this.normalCollection.push(0, 1, 0);this.normalCollection.push(0, 1, 0);
 
-        this.textureCollection.push(0, 1, 0); this.textureCollection.push(0, 0, 0);
-        this.textureCollection.push(1, 1, 0); this.textureCollection.push(1, 0, 0);
+        this.textureCollection.push(0, 1, 0); this.textureCollection.push(1, 0, 0);
+        this.textureCollection.push(1, 1, 0); this.textureCollection.push(0, 0, 0);
+
+        //Side 2...
+        //the bottom
+        this.vertices.push(new SimpleVertex( xLeft,   yBottom,  zNear));
+        this.vertices.push(new SimpleVertex( xRight,  yBottom,  zNear));
+        this.vertices.push(new SimpleVertex( xRight,  yBottom,  zFar));
+        this.vertices.push(new SimpleVertex( xLeft,   yBottom,  zFar));
+
+        this.drawOrder.push(4);this.drawOrder.push(6);this.drawOrder.push(7);
+        this.drawOrder.push(4);this.drawOrder.push(5);this.drawOrder.push(6);
+
+        this.normalCollection.push(0, -1, 0);this.normalCollection.push(0, -1, 0);
+        this.normalCollection.push(0, -1, 0);this.normalCollection.push(0, -1, 0);
+
+        this.textureCollection.push(0, 1, 0); this.textureCollection.push(1, 0, 0);
+        this.textureCollection.push(1, 1, 0); this.textureCollection.push(0, 0, 0);
+
+        //Side 3...
+        //the left face
+        this.vertices.push(new SimpleVertex( xLeft,  yTop,     zNear));
+        this.vertices.push(new SimpleVertex( xLeft,  yTop,     zFar));
+        this.vertices.push(new SimpleVertex( xLeft,  yBottom,  zFar));
+        this.vertices.push(new SimpleVertex( xLeft,  yBottom,  zNear));
+
+        this.drawOrder.push(8);this.drawOrder.push(9);this.drawOrder.push(10);
+        this.drawOrder.push(10);this.drawOrder.push(11);this.drawOrder.push(8);
+
+        this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
+        this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
+
+        this.textureCollection.push(1, 0, 0); this.textureCollection.push(0, 0, 0);
+        this.textureCollection.push(0, 1, 0); this.textureCollection.push(1, 1, 0);
 
         //Side 4...
+        //the right face
+        this.vertices.push(new SimpleVertex( xRight,  yTop,     zNear));
+        this.vertices.push(new SimpleVertex( xRight,  yTop,     zFar));
+        this.vertices.push(new SimpleVertex( xRight,  yBottom,  zFar));
+        this.vertices.push(new SimpleVertex( xRight,  yBottom,  zNear));
+
+        this.drawOrder.push(14);this.drawOrder.push(13);this.drawOrder.push(12);
+        this.drawOrder.push(12);this.drawOrder.push(15);this.drawOrder.push(14);
+
+        this.normalCollection.push(1, 0, 0);this.normalCollection.push(1, 0, 0);
+        this.normalCollection.push(1, 0, 0);this.normalCollection.push(1, 0, 0);
+
+        this.textureCollection.push(0, 0, 0); this.textureCollection.push(1, 0, 0);
+        this.textureCollection.push(1, 1, 0); this.textureCollection.push(0, 1, 0);
+
+
+        //Side 5...
         //the near face
         this.vertices.push(new SimpleVertex( xLeft,   yBottom,  zNear));
         this.vertices.push(new SimpleVertex( xRight,  yBottom,  zNear));
         this.vertices.push(new SimpleVertex( xRight,  yTop,     zNear));
         this.vertices.push(new SimpleVertex( xLeft,   yTop,     zNear));
 
-        this.drawOrder.push(1+12);this.drawOrder.push(2+12);this.drawOrder.push(0+12);
-        this.drawOrder.push(2+12);this.drawOrder.push(3+12);this.drawOrder.push(0+12);
+        this.drawOrder.push(16);this.drawOrder.push(17);this.drawOrder.push(18);
+        this.drawOrder.push(18);this.drawOrder.push(19);this.drawOrder.push(16);
 
-        this.normalCollection.push(0, 0, 1);
-        this.normalCollection.push(0, 0, 1);
+        this.normalCollection.push(0, 0, 1);this.normalCollection.push(0, 0, 1);
+        this.normalCollection.push(0, 0, 1);this.normalCollection.push(0, 0, 1);
 
         this.textureCollection.push(0, 1, 0); this.textureCollection.push(1, 1, 0);
         this.textureCollection.push(1, 0, 0); this.textureCollection.push(0, 0, 0);
 
-        //Side 5...
+        //Side 6...
         //the far face
         this.vertices.push(new SimpleVertex( xLeft,   yBottom,  zFar));
         this.vertices.push(new SimpleVertex( xRight,  yBottom,  zFar));
         this.vertices.push(new SimpleVertex( xRight,  yTop,     zFar));
         this.vertices.push(new SimpleVertex( xLeft,   yTop,     zFar));
 
-        this.drawOrder.push(2+16);this.drawOrder.push(1+16);this.drawOrder.push(0+16);
-        this.drawOrder.push(3+16);this.drawOrder.push(2+16);this.drawOrder.push(0+16);
+        this.drawOrder.push(20);this.drawOrder.push(23);this.drawOrder.push(22);
+        this.drawOrder.push(22);this.drawOrder.push(21);this.drawOrder.push(20);
 
-        this.normalCollection.push(0, 0, -1);
-        this.normalCollection.push(0, 0, -1);
+        this.normalCollection.push(0, 0, -1);this.normalCollection.push(0, 0, -1);
+        this.normalCollection.push(0, 0, -1);this.normalCollection.push(0, 0, -1);
 
         this.textureCollection.push(0, 1, 0); this.textureCollection.push(1, 1, 0);
         this.textureCollection.push(1, 0, 0); this.textureCollection.push(0, 0, 0);

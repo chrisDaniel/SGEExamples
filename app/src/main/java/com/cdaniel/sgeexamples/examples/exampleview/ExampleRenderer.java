@@ -2,14 +2,10 @@ package com.cdaniel.sgeexamples.examples.exampleview;
 
 import android.opengl.GLSurfaceView;
 
-import com.cdaniel.sgeexamples.examples.examples.X5_FPSLevelPrototype;
 import com.cdaniel.sgeexamples.examples.manager.ExampleManager;
 import com.cdaniel.sgeexamples.examples.manager.Setup_SGE;
 import com.cdaniel.sgeexamples.examples.manager.Setup_Textures;
-import com.cdaniel.simplegameengine.core.SimpleGameEngine;
 import com.cdaniel.simplegameengine.engine.SGE;
-
-import java.util.HashMap;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;

@@ -83,7 +83,7 @@ public class SGEProperties implements SGEPipeline {
     private int totalFramesProcessed = 0;
 
     private boolean dirtyFrameRate = false;
-    private float frameRate = 35f;
+    private float frameRate = 55f;
     private int   frameCount = 0;
     private float frameCountSeconds = 0;
     private float frCalcPeriod = 8000f;
@@ -99,9 +99,9 @@ public class SGEProperties implements SGEPipeline {
         totalFramesProcessed++;
 
         /* **********************************/
-        // Do not update for first 100 Frames
+        // Do not update for first 50 Frames
         /* **********************************/
-        if(totalFramesProcessed < 100){
+        if(totalFramesProcessed < 50){
             return;
         }
 

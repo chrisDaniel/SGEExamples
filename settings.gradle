@@ -1,1 +1,1 @@
-include ':app', ':simplegameengine'
+include ':app', ':simplegameengine', ':simplegameviews'

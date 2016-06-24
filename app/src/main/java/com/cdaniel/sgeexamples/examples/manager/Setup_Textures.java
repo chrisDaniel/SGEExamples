@@ -36,7 +36,8 @@ public class Setup_Textures {
     public static Integer tile_blueMetal;
     public static Integer tile_white;
 
-
+    public static Integer obsdeck;
+    public static Integer obsdeck_observer;
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * Create the Textures in SGE
@@ -109,5 +110,18 @@ public class Setup_Textures {
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.tile_white);
         tile_white = SGE.textures().loadTexture(gl, bitmap);
         bitmap.recycle();
+
+
+        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~
+         * Details
+         *~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.obsdeck_empty);
+        obsdeck = SGE.textures().loadTexture(gl, bitmap);
+        bitmap.recycle();
+
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.obsdeck_obs1);
+        obsdeck_observer = SGE.textures().loadTexture(gl, bitmap);
+        bitmap.recycle();
+
     }
 }

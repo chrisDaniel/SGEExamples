@@ -24,7 +24,7 @@ public interface Color {
 
     float[] HA_GREENSEA = {147f/256f, 250f/256f, 255f/256f, 1f};
     float[] HA_BLUEDARKMETAL = {70f/256f, 96f/256f, 109f/256f, 1f};
-    float[] HA_BLUEDEEP = {67f/256f, 62f/256f, 216f/256f, 1f};
+    float[] HA_BLUEDEEPPURPLE = {67f/256f, 59f/256f, 199f/256f, 1f};
     //float[] HA_ = {f/256f, f/256f, f/256f, 1f};
     //float[] HA_ = {f/256f, f/256f, f/256f, 1f};
 

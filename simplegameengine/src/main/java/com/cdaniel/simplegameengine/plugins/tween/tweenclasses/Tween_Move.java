@@ -1,6 +1,7 @@
 package com.cdaniel.simplegameengine.plugins.tween.tweenclasses;
 
 import com.cdaniel.simplegameengine.core.Vertex;
+import com.cdaniel.simplegameengine.engine.SGE;
 import com.cdaniel.simplegameengine.plugins.tween.Tween;
 import com.cdaniel.simplegameengine.plugins.tween.TweenEase;
 import com.cdaniel.simplegameengine.utils.constructs.SimpleVertex;
@@ -45,7 +46,7 @@ public class Tween_Move extends AbstractPerFrameTween implements Tween {
     protected void afterAttach(){
 
         this.fromValue = new SimpleVertex(attachedTo.getCenter());
-
+        float fr = SGE.properties().frameRate();
         deltaX = toValue.getX() - fromValue.getX();
         deltaY = toValue.getY() - fromValue.getY();
         deltaZ = toValue.getZ() - fromValue.getZ();
@@ -81,7 +82,7 @@ public class Tween_Move extends AbstractPerFrameTween implements Tween {
         return new Tween_MoveBuilder();
     }
     public static class Tween_MoveBuilder {
-
+        //todo - make all tween durations default to 0
         private HashMap<String, Object> props = new HashMap<>();
         private float duration = 5000f;
         protected TweenEase easer;

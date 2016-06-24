@@ -47,7 +47,7 @@ public class SGELighting implements SGEPipeline {
             return;
         }
 
-        float light_position[] = { 0f, 100f, 0f, 1f };
+        float light_position[] = { 0f, 256f, 0f, 1f };
         FloatBuffer pos = Conv_ToBuffer.getFloatBuffer(light_position);
 
         float light_ambient[] = { .2f, .2f, .2f, 1.0f };

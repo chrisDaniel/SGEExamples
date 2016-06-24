@@ -13,7 +13,7 @@ abstract public class AbstractPerFrameTween extends AbstractBaseTween implements
     * Construct and Variables
     *
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    protected int framesBetweenIterations = 2;
+    protected int framesBetweenIterations = 1;
 
     private int currentFrameCount = 0;
     private int iterateAtFrame = 0;
@@ -27,11 +27,11 @@ abstract public class AbstractPerFrameTween extends AbstractBaseTween implements
 
         attachedTo = wrapper;
 
-        float frameRate = Math.min(21, SGE.properties().frameRate());
+        float frameRate = Math.max(21, SGE.properties().frameRate());
         int totalFrames = (int) (duration * frameRate);
-        int framesPerIteration = 1 + framesBetweenIterations;
+        int framesPerIteration = Math.max(1, framesBetweenIterations);
 
-        this.totalIterations = (int) totalFrames / framesPerIteration;
+        this.totalIterations = totalFrames / framesPerIteration;
         this.iterateAtFrame = (int) (totalFrames / totalIterations);
 
         afterAttach();

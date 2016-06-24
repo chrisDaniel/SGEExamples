@@ -14,4 +14,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <com.cdaniel.simplegameviews.inputcontrols.JoystickSimple
+        android:id="@+id/joystick"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"/>
+
+    <com.cdaniel.simplegameviews.inputcontrols.TwoButtons
+        android:id="@+id/twoButtons"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>

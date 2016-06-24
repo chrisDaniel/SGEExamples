@@ -76,7 +76,7 @@ abstract public class AbstractBaseDir extends AbstractHasProperties implements C
             return;
         }
 
-        float frameRate = Math.min(21, SGE.properties().frameRate());
+        float frameRate = Math.max(21, SGE.properties().frameRate());
 
         this.totalIterations = (int) (duration * frameRate);
         this.currentIteration = 0;

@@ -8,13 +8,11 @@ import com.cdaniel.sgeexamples.examples.examples.X2_Infrastructure;
 import com.cdaniel.sgeexamples.examples.examples.X3_Physics;
 import com.cdaniel.sgeexamples.examples.examples.X3_PhysicsPendulum;
 import com.cdaniel.sgeexamples.examples.examples.X4_Interactive_Camera;
-import com.cdaniel.sgeexamples.examples.examples.X5_FPSLevelPrototype;
+import com.cdaniel.sgeexamples.examples.examples.X5_Joystick;
+import com.cdaniel.sgeexamples.examples.examples.X6_FPSLevelPrototype;
 import com.cdaniel.sgeexamples.examples.exampleview.ExampleView;
 import com.cdaniel.sgeexamples.examples.examples.AbstractXample;
-import com.cdaniel.simplegameengine.engine.SGE;
-import com.cdaniel.simplegameengine.plugins.director.directors_focus.DIR_PanLeftRight;
-import com.cdaniel.simplegameengine.plugins.director.directors_focus.DIR_PanUpDown;
-import com.cdaniel.simplegameengine.utils.constants.Constants;
+import com.cdaniel.simplegameviews.inputcontrols.JoystickSimple;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +32,7 @@ public class ExampleManager {
     public static int EX3_2 = 302;
     public static int EX4_1 = 401;
     public static int EX5_1 = 501;
+    public static int EX6_1 = 601;
 
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,7 +99,8 @@ public class ExampleManager {
         examplesMap.put(EX3_1, new X3_Physics());
         examplesMap.put(EX3_2, new X3_PhysicsPendulum());
         examplesMap.put(EX4_1, new X4_Interactive_Camera());
-        examplesMap.put(EX5_1, new X5_FPSLevelPrototype());
+        examplesMap.put(EX5_1, new X5_Joystick());
+        examplesMap.put(EX6_1, new X6_FPSLevelPrototype());
     }
 
     public void activateExample(int exampleId) {
@@ -120,6 +120,19 @@ public class ExampleManager {
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     public void onFrame() {
         this.examplesMap.get(activeExampleId).onFrame();
+    }
+
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Handle User Controls
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    private JoystickSimple joystick;
+    public void setJoystick(JoystickSimple joystick){
+        this.joystick = joystick;
+    }
+    public JoystickSimple getJoystick(){
+        return joystick;
     }
 
 

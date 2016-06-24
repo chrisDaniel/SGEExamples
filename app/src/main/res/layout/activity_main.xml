@@ -11,7 +11,7 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -40,6 +40,10 @@
             android:text="Interactive - Look Around" />
 
         <Button android:id="@+id/trigger_ex5_1"
+            style="@style/ButtonTrigger"
+            android:text="User Controls - Joystick" />
+
+        <Button android:id="@+id/trigger_ex6_1"
             style="@style/ButtonTrigger"
             android:text="Prototype - FPS Level" />
 

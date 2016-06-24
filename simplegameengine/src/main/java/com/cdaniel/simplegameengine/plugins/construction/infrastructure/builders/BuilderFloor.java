@@ -17,10 +17,11 @@ public class BuilderFloor extends AbstractInfraBuilder<BuilderFloor> {
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     BuilderFloor(){}
 
-    private float leftX;
     private float rightX;
-    private float farZ;
+    private float leftX;
     private float nearZ;
+    private float farZ;
+
     private float y;
 
     private Float thickness;
