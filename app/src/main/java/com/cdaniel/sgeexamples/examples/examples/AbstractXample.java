@@ -22,7 +22,7 @@ public abstract class AbstractXample {
     * Handle User Actions
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    public void handleUserAction_move(float dx, float dy){
+    public void handle_fingerSwipe(float dx, float dy){
 
         float full360 = 1200;
         float angle = Constants.PI * (-1 * dx / full360);

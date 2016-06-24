@@ -2,6 +2,7 @@ package com.cdaniel.sgeexamples.examples.manager;
 
 import android.content.Context;
 import android.view.MotionEvent;
+import android.view.View;
 
 import com.cdaniel.sgeexamples.examples.examples.X1_ShapesTweensDirectors;
 import com.cdaniel.sgeexamples.examples.examples.X2_Infrastructure;
@@ -130,6 +131,8 @@ public class ExampleManager {
     public JoystickSimple getJoystick(){
         return joystick;
     }
+    public void showJoystick(){ExampleManager.getInstance().getJoystick().setVisibility(View.VISIBLE);}
+    public void hideJoystick(){ExampleManager.getInstance().getJoystick().setVisibility(View.INVISIBLE);}
 
     private TwoButtons twoButtons;
     public void setTwoButtons(TwoButtons twoButtons){this.twoButtons = twoButtons; }

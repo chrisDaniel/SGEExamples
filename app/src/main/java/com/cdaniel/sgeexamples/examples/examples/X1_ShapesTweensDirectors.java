@@ -42,11 +42,9 @@ public class X1_ShapesTweensDirectors extends AbstractXample {
         if(SGE.properties().totalFrames() == 1){
             SGE.camera().changeDepthFocus(1f, 60f);
         }
-
         if (SGE.properties().totalFrames() == 2) {
             shape1 = SGE.construct().shapes().sphere().size(1.6f).textureId(Setup_Textures.texture1).build();
         }
-
         if(SGE.properties().totalFrames() == 14){
             Tween_Rotate rotate = Tween_Rotate.builder().framesPerIteration(1)
                     .property(Tween.TWEEN_LOOP, Tween.TWEEN_LOOP_Repeat_Infinite).property(Tween.TWEEN_REVERSE, Tween.TWEEN_REVERSE_No)
@@ -58,8 +56,8 @@ public class X1_ShapesTweensDirectors extends AbstractXample {
             shape2 = SGE.construct().shapes().sphere().size(.7f).x(5f).textureId(Setup_Textures.texture2).build();
         }
         if(SGE.properties().totalFrames() == 40){
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(9).toX(-18f).toY(13f).toZ(-3f).build());
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(9).toX(-5f).toY(10f).toZ(-26f).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(5).toX(-18f).toY(13f).toZ(-3f).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(5).toX(-5f).toY(10f).toZ(-26f).build());
         }
         if(SGE.properties().totalFrames() == 200){
             Tween_Orbit orbit = Tween_Orbit.builder().orbitRadius(5).anchorContentId(shape1).duration(8)
@@ -109,7 +107,7 @@ public class X1_ShapesTweensDirectors extends AbstractXample {
         }
         if(SGE.properties().totalFrames() == 900){
             SimpleVertex jupiterCenter = new SimpleVertex(SGE.contents().get(shape4).getCenter());
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(14).toX(jupiterCenter.getX()).toY(jupiterCenter.getY()).toZ(jupiterCenter.getZ()).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(7).toX(jupiterCenter.getX()).toY(jupiterCenter.getY()).toZ(jupiterCenter.getZ()).build());
         }
         if(SGE.properties().totalFrames() == 1350){
             Tween_Move tween = Tween_Move.builder().duration(4).easer(new Ease_Quadratic(2)).moveTo(new SimpleVertex(-6, 4, -4))
@@ -125,8 +123,8 @@ public class X1_ShapesTweensDirectors extends AbstractXample {
         }
         if(SGE.properties().totalFrames() == 1999) {
             SGE.director().queueDirector(DIR_Orbit.builder().duration(8).secondsPerRevolution(12).build());
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(7).toX(1).toY(20).toZ(-1).build());
-            SGE.director().queueDirector(DIR_MoveToContent.builder().contentId(shape4).duration(10).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(5).toX(1).toY(20).toZ(-1).build());
+            SGE.director().queueDirector(DIR_MoveToContent.builder().contentId(shape4).duration(5).build());
 
             DIR_FollowBehind followEarth = DIR_FollowBehind.builder().contentIdToFollow(shape2).offsetX(2f).trailDistance(25).build();
             SGE.director().queueDirector(followEarth);
@@ -138,7 +136,7 @@ public class X1_ShapesTweensDirectors extends AbstractXample {
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     @Override
-    public void handleUserAction_move(float dx, float dy){
+    public void handle_fingerSwipe(float dx, float dy){
         //dont react
     }
 }

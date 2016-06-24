@@ -219,7 +219,7 @@ public class X2_Infrastructure extends AbstractXample {
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     @Override
-    public void handleUserAction_move(float dx, float dy){
+    public void handle_fingerSwipe(float dx, float dy){
         //dont react
     }
 }

@@ -1,12 +1,12 @@
 package com.cdaniel.sgeexamples.examples.examples;
 
+import android.view.View;
+
 import com.cdaniel.sgeexamples.examples.manager.ExampleManager;
-import com.cdaniel.sgeexamples.examples.manager.Setup_SGE;
 import com.cdaniel.sgeexamples.examples.manager.Setup_Textures;
 import com.cdaniel.simplegameengine.core.Vector;
 import com.cdaniel.simplegameengine.engine.SGE;
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_MoveTo;
-import com.cdaniel.simplegameengine.utils.calculations.Calc_VectorMath;
 import com.cdaniel.simplegameengine.utils.transformers.Transform_Slide;
 import com.cdaniel.simplegameviews.inputcontrols.JoystickSimple;
 
@@ -47,7 +47,7 @@ public class X5_Joystick extends AbstractXample implements JoystickSimple.Joysti
 
 
     @Override
-    public void handleUserAction_move(float dx, float dy){
+    public void handle_fingerSwipe(float dx, float dy){
         //doNothing;
     }
     @Override

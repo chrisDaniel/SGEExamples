@@ -314,11 +314,11 @@ public class X6_FPSLevelPrototype extends AbstractXample {
     private int lookingAtHook;
 
     @Override
-    public void handleUserAction_move(float dx, float dy){
+    public void handle_fingerSwipe(float dx, float dy){
 
         //step 1...
         //perform the look action in the abstract class
-        super.handleUserAction_move(dx, dy);
+        super.handle_fingerSwipe(dx, dy);
 
         //step 2...
         //evaluate what we are looking at
