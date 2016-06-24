@@ -28,18 +28,4 @@ public class ExampleView extends GLSurfaceView{
         ExampleManager.getInstance().setContext(context);
         ExampleManager.getInstance().setView(this);
     }
-
-
-
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    * Pass Events to the Manager
-    *
-    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    @Override
-    public boolean onTouchEvent(MotionEvent e) {
-
-        ExampleManager.getInstance().interactHandler().handleTouch(e);
-        return true;
-    }
-
 }

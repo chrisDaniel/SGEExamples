@@ -12,7 +12,9 @@ import com.cdaniel.sgeexamples.examples.examples.X5_Joystick;
 import com.cdaniel.sgeexamples.examples.examples.X6_FPSLevelPrototype;
 import com.cdaniel.sgeexamples.examples.exampleview.ExampleView;
 import com.cdaniel.sgeexamples.examples.examples.AbstractXample;
+import com.cdaniel.simplegameviews.inputcontrols.FingerActivityArea;
 import com.cdaniel.simplegameviews.inputcontrols.JoystickSimple;
+import com.cdaniel.simplegameviews.inputcontrols.TwoButtons;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,11 +42,9 @@ public class ExampleManager {
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     private static ExampleManager singleton;
-    private Interaction_Handler interactionHandler;
 
     public ExampleManager() {
         this.initializeExamples();
-        this.interactionHandler = new Interaction_Handler();
     }
 
     public static ExampleManager getInstance() {
@@ -53,10 +53,6 @@ public class ExampleManager {
             singleton = new ExampleManager();
         }
         return singleton;
-    }
-
-    public Interaction_Handler interactHandler() {
-        return interactionHandler;
     }
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,7 +120,7 @@ public class ExampleManager {
 
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    * Handle User Controls
+    * Reference to User Controls
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     private JoystickSimple joystick;
@@ -135,64 +131,11 @@ public class ExampleManager {
         return joystick;
     }
 
+    private TwoButtons twoButtons;
+    public void setTwoButtons(TwoButtons twoButtons){this.twoButtons = twoButtons; }
+    public TwoButtons getTwoButtons() { return  twoButtons; }
 
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    *
-    * Interaction Handler Sub Class
-    *
-    *
-    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    public class Interaction_Handler {
-
-        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        * Constructor / Variables
-        *
-        * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        Interaction_Handler() {
-
-        }
-
-        /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        * Accept Touch Events
-        *
-        * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        private float mPreviousX = 0f;
-        private float mPreviousY = 0f;
-        private float TOUCH_SCALE_FACTOR = 1f;
-
-        public void handleTouch(MotionEvent e) {
-
-            // MotionEvent reports input details from the touch screen
-            // and other input controls. In this case, we are only
-            // interested in events where the touch position changed.
-
-            float x = e.getX();
-            float y = e.getY();
-
-            switch (e.getAction()) {
-                case MotionEvent.ACTION_MOVE:
-
-                    float dx = x - mPreviousX;
-                    float dy = y - mPreviousY;
-
-                    // reverse direction of rotation above the mid-line
-                    if (y > ExampleManager.getInstance().getView().getHeight() / 2) {
-                        dx = dx * -1;
-                    }
-
-                    // reverse direction of rotation to left of the mid-line
-                    if (x < ExampleManager.getInstance().getView().getWidth() / 2) {
-                        dy = dy * -1;
-                    }
-
-                    dx = dx * TOUCH_SCALE_FACTOR;
-                    dy = dy * TOUCH_SCALE_FACTOR;
-
-                    ExampleManager.getInstance().getActiveExample().handleUserAction_move(dx, dy);
-            }
-
-            mPreviousX = x;
-            mPreviousY = y;
-        }
-    }
+    private FingerActivityArea fingerActivityArea;
+    public void setFingerActivityArea(FingerActivityArea fingerActivityArea){this.fingerActivityArea = fingerActivityArea; }
+    public FingerActivityArea getFingerActivityArea() { return  fingerActivityArea; }
 }
