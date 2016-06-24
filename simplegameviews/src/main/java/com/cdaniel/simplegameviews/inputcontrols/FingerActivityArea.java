@@ -9,18 +9,14 @@ import android.view.View;
 /**
  * Created by christopher.daniel on 6/23/16.
  */
-public class FingerActivityArea extends View implements Runnable {
+public class FingerActivityArea extends View{
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
     * Variables
     *
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    private float TOUCH_SCALE_FACTOR = 1f;
-    
-    private float mPreviousX = 0f;
-    private float mPreviousY = 0f;
-    private float mCurrentX = 0f;
-    private float mCurrentY = 0f;
+    private float touchX = 0f;
+    private float touchY = 0f;
     
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
     * Construction
@@ -73,10 +69,6 @@ public class FingerActivityArea extends View implements Runnable {
     @Override
     public boolean onTouchEvent(MotionEvent e) {
 
-        // MotionEvent reports input details from the touch screen
-        // and other input controls. In this case, we are only
-        // interested in events where the touch position changed.
-
         float x = e.getX();
         float y = e.getY();
 
@@ -84,40 +76,34 @@ public class FingerActivityArea extends View implements Runnable {
 
             case MotionEvent.ACTION_DOWN:
 
-                mPreviousX = x;
-                mPreviousY = y;
-                mCurrentX = x;
-                mCurrentX = y;
+                touchX = x;
+                touchY = y;
 
-                this.notifyListeners_down(x, y);
-                this.thread_startNewSlide();
+                this.notifyListeners_down();
 
             case MotionEvent.ACTION_MOVE:
 
-                mCurrentX = x;
-                mCurrentX = y;
+                this.notifyListeners_slide(x, y);
+
+                touchX = x;
+                touchY = y;
             
             case MotionEvent.ACTION_UP:
                 
-                mPreviousX = x;
-                mPreviousY = y;
-                mCurrentX = x;
-                mCurrentX = y;
+                touchX = x;
+                touchY = y;
                 
-                this.notifyListeners_up(x, y);
-                this.thread_stopSlide();
+                this.notifyListeners_up();
         }
 
         return true;
     }
 
+
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
     * How our Monitoring and listener works
     *
     * Interface: anybody who want to listen just meets the interface
-    *
-    * Thread: only dispatch slides at predefined interval .... i.e. every 10 milliseconds
-    *         dont want to dispatch slides all the freaking time when we can dispatch summaries that the user wont notice
     *
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     
@@ -125,6 +111,7 @@ public class FingerActivityArea extends View implements Runnable {
      * The Listener Interface
      *~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     private FingerListener listener;
+    private float slideSensitivity = .7f;
 
     public interface FingerListener {
         void onFingerSlide(float dx, float dy);
@@ -133,78 +120,53 @@ public class FingerActivityArea extends View implements Runnable {
     }
     public void setListener(FingerListener listener) {
         this.listener = listener;
+        slideSensitivity = 1f;
+    }
+    public void setListener(FingerListener listener, float sensitivity){
+        this.listener = listener;
+        slideSensitivity = sensitivity;
     }
 
-    private void notifyListeners_down(float x, float y){
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Notifications
+    *~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+    private void notifyListeners_down(){
 
         if (listener == null) {
             return;
         }
-        listener.onFingerDown(x, y);
+        listener.onFingerDown(touchX, touchY);
     }
-    private void notifyListeners_up(float x, float y){
+    private void notifyListeners_up(){
 
         if (listener == null) {
             return;
         }
-        listener.onFingerUp(x, y);
+        listener.onFingerUp(touchY, touchX);
     }
-    private void notifyListeners_slide() {
+    private void notifyListeners_slide(float x, float y) {
 
         if (listener == null) {
             return;
         }
 
-        float dx = mCurrentX - mPreviousX;
-        float dy = mCurrentY - mPreviousY;
+        float dx = x - touchX;
+        float dy = y - touchY;
+
+        // reverse direction of rotation above the mid-line
+        if (y > getHeight() / 2) {
+        //     dy = dy * -1;
+        }
+
+        // reverse direction of rotation to left of the mid-line
+        if (x < getWidth() / 2) {
+        //     dx = dx * -1;
+        }
+
+        dx = dx * slideSensitivity;
+        dy = dy * slideSensitivity;
 
         listener.onFingerSlide(dx, dy);
-
-        mPreviousX = mCurrentX;
-        mPreviousY = mCurrentY;
-    }
-    
-    
-    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    * Managing The Thread
-    *~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    private Thread thread = new Thread(this);
-    private long loopInterval = 10;
-
-    @Override
-    public void run() {
-
-        while (!Thread.interrupted()) {
-
-            //part 1...
-            //dispatch the joystick position
-            post(new Runnable() {
-                public void run() {notifyListeners_slide();}
-            });
-
-            //part 2...
-            //sleep until we want to monitor this thing again
-            try {
-                Thread.sleep(loopInterval);
-            }
-            catch (InterruptedException e) {
-                break;
-            }
-        }
-    }
-    private void thread_startNewSlide() {
-
-        if (thread != null && thread.isAlive()) {
-            thread.interrupt();
-        }
-
-        thread = new Thread(this);
-        thread.start();
-    }
-    private void thread_stopSlide() {
-
-        if (thread != null && thread.isAlive()) {
-            thread.interrupt();
-        }
     }
 }

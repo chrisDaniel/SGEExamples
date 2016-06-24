@@ -13,7 +13,7 @@ import com.cdaniel.simplegameviews.inputcontrols.JoystickSimple;
 /**
  * Created by christopher.daniel on 6/19/16.
  */
-public class X5_Joystick extends AbstractXample implements JoystickSimple.JoystickListener {
+public class X5_Joystick extends AbstractXample{
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * Vars
@@ -35,10 +35,10 @@ public class X5_Joystick extends AbstractXample implements JoystickSimple.Joysti
         //Show How the Walls/Floor Work
         if (SGE.properties().totalFrames() == 1) {
 
+            super.startListeningToUserActions();
+
             SGE.director().killAllDirectors();
             SGE.director().queueDirector(DIR_MoveTo.builder().duration(0f).toX(0f).toY(20f).toZ(1f).build());
-
-            ExampleManager.getInstance().getJoystick().setListener(this, 50);
         }
         if (SGE.properties().totalFrames() == 3) {
             shape = SGE.construct().shapes().sphere().x(0f).y(2f).z(0f).size(2f).textureId(Setup_Textures.texture1).build();
@@ -46,12 +46,16 @@ public class X5_Joystick extends AbstractXample implements JoystickSimple.Joysti
     }
 
 
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * User Controls
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     @Override
-    public void handle_fingerSwipe(float dx, float dy){
+    public void onFingerSlide(float dx, float dy){
         //doNothing;
     }
     @Override
-    public void onUserControl(Vector joyVector){
+    public void onJoystickControl(Vector joyVector){
 
         float topSpeed = 8 / 20f;  //8 m/s and we get a joystick update 20 times per second
 

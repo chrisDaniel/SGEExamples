@@ -201,7 +201,7 @@ public class JoystickSimple extends View implements Runnable{
     private JoystickListener listener;
 
     public interface JoystickListener {
-        void onUserControl(Vector joyVector);
+        void onJoystickControl(Vector joyVector);
     }
     public void setListener(JoystickListener listener, long repeatInterval) {
         this.listener = listener;
@@ -220,7 +220,7 @@ public class JoystickSimple extends View implements Runnable{
         float normalizedMagnitude = Calc_VectorMath.magnitude(joyVector) / maximumJoyMagnitude;
 
         joyVector = Calc_VectorMath.scaleVector(normalizedJoy, normalizedMagnitude);
-        listener.onUserControl(joyVector);
+        listener.onJoystickControl(joyVector);
     }
 
 

@@ -2,6 +2,7 @@ package com.cdaniel.sgeexamples.examples.examples;
 
 import com.cdaniel.sgeexamples.examples.manager.Setup_Textures;
 import com.cdaniel.simplegameengine.core.Color;
+import com.cdaniel.simplegameengine.core.Vector;
 import com.cdaniel.simplegameengine.core.Vertex;
 import com.cdaniel.simplegameengine.engine.SGE;
 import com.cdaniel.simplegameengine.plugins.director.directors_focus.DIR_PanLeftRight;
@@ -215,11 +216,16 @@ public class X2_Infrastructure extends AbstractXample {
     }
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    * Handle User Actions
+    * User Controls
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     @Override
-    public void handle_fingerSwipe(float dx, float dy){
-        //dont react
+    public void onFingerSlide(float dx, float dy) {
+        //doNothing;
+    }
+
+    @Override
+    public void onJoystickControl(Vector joyVector) {
+        //doNothing
     }
 }

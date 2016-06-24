@@ -2,6 +2,7 @@ package com.cdaniel.sgeexamples.examples.examples;
 
 import com.cdaniel.sgeexamples.examples.manager.Setup_Textures;
 import com.cdaniel.simplegameengine.core.Color;
+import com.cdaniel.simplegameengine.core.Vector;
 import com.cdaniel.simplegameengine.core.Vertex;
 import com.cdaniel.simplegameengine.engine.SGE;
 import com.cdaniel.simplegameengine.plugins.construction.infrastructure.builders.BuilderTube;
@@ -13,6 +14,7 @@ import com.cdaniel.simplegameengine.plugins.director.directors_focus.DIR_PanUpDo
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_Dolly;
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_MoveTo;
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_MoveToContent;
+import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_Truck;
 import com.cdaniel.simplegameengine.plugins.director.directors_strategy.DIR_Orbit;
 import com.cdaniel.simplegameengine.plugins.tween.Tween;
 import com.cdaniel.simplegameengine.plugins.tween.easers.Ease_Quadratic;
@@ -22,6 +24,7 @@ import com.cdaniel.simplegameengine.plugins.tween.tweenclasses.Tween_Move;
 import com.cdaniel.simplegameengine.utils.constants.Constants;
 import com.cdaniel.simplegameengine.utils.constructs.SimpleColor;
 import com.cdaniel.simplegameengine.utils.constructs.SimpleVertex;
+import com.cdaniel.simplegameengine.utils.transformers.Transform_Slide;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +59,9 @@ public class X6_FPSLevelPrototype extends AbstractXample {
     public void onFrame() {
 
         if (SGE.properties().totalFrames() == 1) {
+
+            super.startListeningToUserActions();
+
             SGE.otherGL().setClearColor(fogColor);
             SGE.otherGL().setCulling(true);
             SGE.otherGL().setFogEnabled(true);
@@ -314,11 +320,11 @@ public class X6_FPSLevelPrototype extends AbstractXample {
     private int lookingAtHook;
 
     @Override
-    public void handle_fingerSwipe(float dx, float dy){
+    public void onFingerSlide(float dx, float dy){
 
         //step 1...
         //perform the look action in the abstract class
-        super.handle_fingerSwipe(dx, dy);
+        super.onFingerSlide(dx, dy);
 
         //step 2...
         //evaluate what we are looking at
@@ -332,10 +338,6 @@ public class X6_FPSLevelPrototype extends AbstractXample {
 
         handleDxDy_highLight(lookingAtHook, _lookingAt);
         lookingAtHook = _lookingAt;
-
-        if(lookingAtHook >= 1){
-            handleDxDy_fly();
-        }
     }
     private void handleDxDy_highLight(int removingFrom, int addingTo) {
 
@@ -346,18 +348,43 @@ public class X6_FPSLevelPrototype extends AbstractXample {
         if(addingTo > 0){
             SGE.tweening().killTweenForContent(addingTo);
             SGE.tweening().applyTween(addingTo, Tween_ContentColor.builder().toColor(new SimpleColor(Color.GREEN)).duration(1.5f).build());
-            handleDxDy_fly();
         }
     }
-    private void handleDxDy_fly(){
 
-        if(lookingAtHook <= 0){
-            return;
+
+    @Override
+    public void onJoystickControl(Vector joyVector){
+
+        float topSpeed = 8 / 20f;  //8 m/s and we get a joystick update 20 times per second
+
+        float deltaX = joyVector.getEx() * topSpeed;
+        float deltaZ = joyVector.getEy() * topSpeed;
+
+        SGE.director().queueDirector(DIR_Dolly.builder().dolly(deltaZ).build());
+        SGE.director().queueDirector(DIR_Truck.builder().truck(deltaX).build());
+    }
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    * Handle User Actions - Buttons
+    *
+    * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    @Override
+    public void buttonDown(int buttonId){
+
+        if(buttonId == 2 && lookingAtHook > 0){
+            handleFlyToHook();
         }
+    }
+    @Override
+    public void buttonUp(int buttonId){
+
+    }
+
+    private void handleFlyToHook(){
 
         float distAway = SGE.devTools().calc_distanceFromCamera(lookingAtHook);
         if(distAway >= 25){
-           // return;
+            // return;
         }
 
         SGE.director().queueDirector(DIR_MoveToContent.builder().contentId(lookingAtHook).duration(2f).build());

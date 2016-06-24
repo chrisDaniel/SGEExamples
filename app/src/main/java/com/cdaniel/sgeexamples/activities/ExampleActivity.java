@@ -7,7 +7,9 @@ import com.cdaniel.sgeexamples.R;
 import com.cdaniel.sgeexamples.examples.exampleview.ExampleRenderer;
 import com.cdaniel.sgeexamples.examples.exampleview.ExampleView;
 import com.cdaniel.sgeexamples.examples.manager.ExampleManager;
+import com.cdaniel.simplegameviews.inputcontrols.FingerActivityArea;
 import com.cdaniel.simplegameviews.inputcontrols.JoystickSimple;
+import com.cdaniel.simplegameviews.inputcontrols.TwoButtons;
 
 public class ExampleActivity extends AppCompatActivity {
 
@@ -38,14 +40,17 @@ public class ExampleActivity extends AppCompatActivity {
         JoystickSimple joystick = (JoystickSimple) findViewById(R.id.joystick);
         ExampleManager.getInstance().setJoystick(joystick);
 
-        attachListeners();
+        FingerActivityArea fingerArea = (FingerActivityArea) findViewById(R.id.fingerActivityArea);
+        ExampleManager.getInstance().setFingerActivityArea(fingerArea);
+
+        TwoButtons twoButtons = (TwoButtons) findViewById(R.id.twoButtons);
+        ExampleManager.getInstance().setTwoButtons(twoButtons);
     }
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * Other Android Stuff
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    private void attachListeners() {}
 
     @Override
     protected void onResume() {

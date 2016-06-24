@@ -1,6 +1,7 @@
 package com.cdaniel.sgeexamples.examples.examples;
 
 import com.cdaniel.sgeexamples.examples.manager.Setup_Textures;
+import com.cdaniel.simplegameengine.core.Vector;
 import com.cdaniel.simplegameengine.engine.SGE;
 import com.cdaniel.simplegameengine.plugins.director.directors_focus.DIR_LookAtVertex;
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_MoveTo;
@@ -58,11 +59,16 @@ public class X3_PhysicsPendulum extends AbstractXample {
     }
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    * Handle User Actions
+    * User Controls
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     @Override
-    public void handle_fingerSwipe(float dx, float dy){
-        //dont react
+    public void onFingerSlide(float dx, float dy) {
+        //doNothing;
+    }
+
+    @Override
+    public void onJoystickControl(Vector joyVector) {
+        //doNothing
     }
 }

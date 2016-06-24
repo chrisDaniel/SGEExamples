@@ -266,8 +266,8 @@ public class TwoButtons extends View{
     private TwoButtonListener listener;
 
     public interface TwoButtonListener {
-        void onDown(int buttonId);
-        void onUp(int buttonId);
+        void buttonDown(int buttonId);
+        void buttonUp(int buttonId);
     }
     public void setListener(TwoButtonListener listener) {
         this.listener = listener;
@@ -278,7 +278,7 @@ public class TwoButtons extends View{
             return;
         }
 
-        listener.onUp(buttonState);
+        listener.buttonUp(buttonState);
     }
     private void notifyListenersDown() {
 
@@ -286,6 +286,6 @@ public class TwoButtons extends View{
             return;
         }
 
-        listener.onDown(buttonState);
+        listener.buttonDown(buttonState);
     }
 }
