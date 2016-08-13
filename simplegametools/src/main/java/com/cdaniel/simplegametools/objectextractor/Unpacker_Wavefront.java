@@ -1,6 +1,7 @@
 package com.cdaniel.simplegametools.objectextractor;
 
 import com.cdaniel.simplegametools.tools.CastTools;
+import com.cdaniel.simplegametools.tools.ListTools;
 import com.cdaniel.simplegametools.tools.StringTools;
 
 import java.util.List;
@@ -53,6 +54,7 @@ class Unpacker_Wavefront implements Unpacker {
             unpackIt_handleLine(l, extract);
         }
 
+        unpackIt_finishUp(extract);
         return extract;
     }
     private void unpackIt_handleLine(String l, ObjectExtract extract){
@@ -124,14 +126,40 @@ class Unpacker_Wavefront implements Unpacker {
         String d2Params[] = params[2].split(Pattern.quote("/"));
         String d3Params[] = params[3].split(Pattern.quote("/"));
 
-
         int dv1 = CastTools.extract_Integer(d1Params[0]);
         int dv2 = CastTools.extract_Integer(d2Params[0]);
         int dv3 = CastTools.extract_Integer(d3Params[0]);
 
-        extract.addDrawData(dv1, dv2, dv3);
+        int dn1  = CastTools.extract_Integer(d1Params[2]);
+        int dn2  = CastTools.extract_Integer(d2Params[2]);
+        int dn3  = CastTools.extract_Integer(d3Params[2]);
+
+        int dt1  = CastTools.extract_Integer(d1Params[1]);
+        int dt2  = CastTools.extract_Integer(d2Params[1]);
+        int dt3  = CastTools.extract_Integer(d3Params[1]);
+
+        extract.addDrawVerticeOrder(dv1, dv2, dv3);
+        extract.addDrawNormalOrder(dn1, dn2, dn3);
+        extract.addDrawTextureOrder(dt1, dt2, dt3);
     }
 
+    private void unpackIt_finishUp(ObjectExtract extract){
+
+        //Validate Data....
+        //Required data and counts
+        if(ListTools.isEmpty(extract.getVertices())){
+            throw new UnpackException("No Vertices found in Model Data");
+        }
+        if(extract.getVertices().size()%3 != 0){
+            throw new UnpackException("Invalid number of Vertices. Should be a multiple of three (3 values per Vertex)");
+        }
+        if(ListTools.isEmpty(extract.getDrawVerticeOrder())){
+            throw new UnpackException("No draw data found in Model Data");
+        }
+        if(extract.getDrawVerticeOrder().size()%3 != 0){
+            throw new UnpackException("Invalid number of draw data elements. Requires a multiple of 3 (triangular faces)");
+        }
+    }
 
 
 
