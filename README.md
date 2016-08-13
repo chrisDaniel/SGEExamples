@@ -1,14 +1,13 @@
 # Simple Game Engine Examples
 Collection of examples which use the Simple Game Engine Library.
 
-The simple game engine is an Android Library using OpenGL that probably isnt the correct way to use OpenGL. Still in development but here is some videos of the Examples.
+The simple game engine is an Android Library using OpenGL that probably isnt the correct way to use OpenGL. 
 
-Video 1: Shapes, Tweens, and Camera Direction 
+Still in development...here are some links to YouTube vidoes of the examples in this project.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LUiqlVIovpU" frameborder="0" allowfullscreen>Example 1</iframe>
+[Video 1: Shapes, Tweens, and Camera Direction](https://www.youtube.com/watch?v=LUiqlVIovpU)
 
-Vidoe 2: Infrastructure
+[Vidoe 2: Infrastructure](https://www.youtube.com/watch?v=3QSwVIf4KPg)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3QSwVIf4KPg" frameborder="0" allowfullscreen></iframe>
+[Vidoe 3: A First Person Level](https://www.youtube.com/embed/LUiqlVIovpU)
 
-Video 3: A First Person Level
