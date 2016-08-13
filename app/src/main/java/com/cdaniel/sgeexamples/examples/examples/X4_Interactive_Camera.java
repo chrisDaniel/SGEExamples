@@ -6,6 +6,8 @@ import com.cdaniel.simplegameengine.core.Vertex;
 import com.cdaniel.simplegameengine.engine.SGE;
 import com.cdaniel.simplegameengine.plugins.director.directors_focus.DIR_LookAtVertex;
 import com.cdaniel.simplegameengine.plugins.director.directors_movement.DIR_MoveTo;
+import com.cdaniel.simplegameengine.plugins.director.directors_positionAndlookat.DIR_DollyAndTruck;
+import com.cdaniel.simplegameengine.plugins.director.directors_positionAndlookat.DIR_Slide;
 import com.cdaniel.simplegameengine.utils.constructs.SimpleVertex;
 
 import java.util.ArrayList;
@@ -35,6 +37,9 @@ public class X4_Interactive_Camera extends AbstractXample {
 
         //Part 1...
         //Show How the Walls/Floor Work
+        if (SGE.properties().totalFrames() == 1) {
+            super.startListeningToUserActions();
+        }
         if (SGE.properties().totalFrames() == 2) {
 
             floor = SGE.construct().infrastructure().floor().leftX(-20f).rightX(20f).nearZ(20f).farZ(-20f).y(0).textureId(Setup_Textures.texture_birchwood).build();
@@ -139,11 +144,16 @@ public class X4_Interactive_Camera extends AbstractXample {
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     @Override
     public void onFingerSlide(float dx, float dy) {
-        //doNothing;
+        super.onFingerSlide(dx, dy);
     }
 
     @Override
     public void onJoystickControl(Vector joyVector) {
-        //doNothing
+        float topSpeed = 8 / 20f;  //8 m/s and we get a joystick update 20 times per second
+
+        float dolly = joyVector.getEx() * topSpeed;
+        float truck = joyVector.getEy() * topSpeed;
+
+        SGE.director().queueDirector(DIR_DollyAndTruck.builder().dolly(dolly).truck(truck).fixY(true).build());
     }
 }

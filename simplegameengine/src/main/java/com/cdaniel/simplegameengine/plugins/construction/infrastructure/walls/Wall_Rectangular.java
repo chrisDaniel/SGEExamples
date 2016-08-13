@@ -88,8 +88,9 @@ public class Wall_Rectangular extends AbstractInfrastructureDrawData implements 
         this.drawOrder.push(0);this.drawOrder.push(1);this.drawOrder.push(2);
         this.drawOrder.push(0);this.drawOrder.push(2);this.drawOrder.push(3);
 
-        this.normalCollection.push(1, 0, 0);this.normalCollection.push(1, 0, 0);
-        this.normalCollection.push(1, 0, 0);this.normalCollection.push(1, 0, 0);
+        this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
+        this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
+        this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
 
         this.textureCollection.push(0, 1, 0); this.textureCollection.push(0, 0, 0);
         this.textureCollection.push(1, 0, 0); this.textureCollection.push(1, 1, 0);
@@ -104,8 +105,9 @@ public class Wall_Rectangular extends AbstractInfrastructureDrawData implements 
         this.drawOrder.push(4);this.drawOrder.push(6);this.drawOrder.push(5);
         this.drawOrder.push(7);this.drawOrder.push(6);this.drawOrder.push(4);
 
-        this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
-        this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
+        this.normalCollection.push(1, 0, 0);this.normalCollection.push(1, 0, 0);
+        this.normalCollection.push(1, 0, 0);this.normalCollection.push(1, 0, 0);
+        this.normalCollection.push(1, 0, 0);this.normalCollection.push(1, 0, 0);
 
         this.textureCollection.push(0, 1, 0); this.textureCollection.push(0, 0, 0);
         this.textureCollection.push(1, 0, 0); this.textureCollection.push(1, 1, 0);
@@ -113,7 +115,7 @@ public class Wall_Rectangular extends AbstractInfrastructureDrawData implements 
 
         //Side 3...
         //the top
-        /*this.vertices.push(new SimpleVertex( xLeft,   yTop,  zNear));
+        this.vertices.push(new SimpleVertex( xLeft,   yTop,  zNear));
         this.vertices.push(new SimpleVertex( xRight,  yTop,  zNear));
         this.vertices.push(new SimpleVertex( xLeft,   yTop,  zFar));
         this.vertices.push(new SimpleVertex( xRight,  yTop,  zFar));
@@ -121,6 +123,7 @@ public class Wall_Rectangular extends AbstractInfrastructureDrawData implements 
         this.drawOrder.push(0+8);this.drawOrder.push(2+8);this.drawOrder.push(1+8);
         this.drawOrder.push(1+8);this.drawOrder.push(2+8);this.drawOrder.push(3+8);
 
+        this.normalCollection.push(0, 1, 0);this.normalCollection.push(0, 1, 0);
         this.normalCollection.push(0, 1, 0);this.normalCollection.push(0, 1, 0);
         this.normalCollection.push(0, 1, 0);this.normalCollection.push(0, 1, 0);
 
@@ -139,6 +142,7 @@ public class Wall_Rectangular extends AbstractInfrastructureDrawData implements 
 
         this.normalCollection.push(0, 0, 1);this.normalCollection.push(0, 0, 1);
         this.normalCollection.push(0, 0, 1);this.normalCollection.push(0, 0, 1);
+        this.normalCollection.push(0, 0, 1);this.normalCollection.push(0, 0, 1);
 
         this.textureCollection.push(0, 1, 0); this.textureCollection.push(1, 1, 0);
         this.textureCollection.push(1, 0, 0); this.textureCollection.push(0, 0, 0);
@@ -155,9 +159,9 @@ public class Wall_Rectangular extends AbstractInfrastructureDrawData implements 
 
         this.normalCollection.push(0, 0, -1);this.normalCollection.push(0, 0, -1);
         this.normalCollection.push(0, 0, -1);this.normalCollection.push(0, 0, -1);
+        this.normalCollection.push(0, 0, -1);this.normalCollection.push(0, 0, -1);
 
         this.textureCollection.push(0, 1, 0); this.textureCollection.push(1, 1, 0);
         this.textureCollection.push(1, 0, 0); this.textureCollection.push(0, 0, 0);
-        */
     }
 }

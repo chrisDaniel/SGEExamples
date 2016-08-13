@@ -131,11 +131,12 @@ public class Platform_withColumn extends AbstractInfrastructureDrawData implemen
         this.vertices.push(new SimpleVertex( xLeft,  yBottom,  zFar));
         this.vertices.push(new SimpleVertex( xLeft,  yTop,     zFar));
 
+        this.drawOrder.push(0+drawStart);this.drawOrder.push(2+drawStart);this.drawOrder.push(1+drawStart);
+        this.drawOrder.push(1+drawStart);this.drawOrder.push(2+drawStart);this.drawOrder.push(3+drawStart);
+
         this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
         this.normalCollection.push(-1, 0, 0);this.normalCollection.push(-1, 0, 0);
 
-        this.drawOrder.push(0+drawStart);this.drawOrder.push(2+drawStart);this.drawOrder.push(1+drawStart);
-        this.drawOrder.push(1+drawStart);this.drawOrder.push(2+drawStart);this.drawOrder.push(3+drawStart);
 
         this.textureCollection.push(0, 1, 0); this.textureCollection.push(0, 0, 0);
         this.textureCollection.push(1, 1, 0); this.textureCollection.push(1, 0, 0);

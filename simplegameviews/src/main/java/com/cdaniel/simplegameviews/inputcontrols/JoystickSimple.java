@@ -213,7 +213,7 @@ public class JoystickSimple extends View implements Runnable{
             return;
         }
 
-        Vector joyVector = new SimpleVector(0f, 0f, 0f, touchX-centerX, touchY-centerY, 0f);
+        Vector joyVector = new SimpleVector(0f, 0f, 0f, touchX-centerX, centerY-touchY, 0f);
         Vector normalizedJoy = Calc_VectorMath.normalizeVector(joyVector);
 
         float maximumJoyMagnitude = joystickRadius;

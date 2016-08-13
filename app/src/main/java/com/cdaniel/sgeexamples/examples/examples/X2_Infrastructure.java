@@ -32,6 +32,7 @@ public class X2_Infrastructure extends AbstractXample {
     private ArrayList<Integer> mazeWalls = new ArrayList();
 
     private float wallH = 4.7f;
+    private float speed = 2f;
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * On Frame
@@ -49,7 +50,7 @@ public class X2_Infrastructure extends AbstractXample {
             floor = SGE.construct().infrastructure().floor().leftX(-21f).rightX(21f).nearZ(21f).farZ(-21f).y(0).color(new SimpleColor(Color.CYAN)).build();
         }
         if (SGE.properties().totalFrames() == 3) {
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(5).toX(0).toY(28).toZ(60).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(5/speed).toX(0).toY(28).toZ(60).build());
         }
         if (SGE.properties().totalFrames() == 50) {
             wall = SGE.construct().infrastructure().wall().startX(-3f).endX(3f).startZ(0f).endZ(0f).height(8f).thickness(1).color(new SimpleColor(Color.RED)).build();
@@ -125,7 +126,7 @@ public class X2_Infrastructure extends AbstractXample {
         if(SGE.properties().totalFrames() == 425) {
             SGE.director().queueDirector(DIR_MoveTo.builder().duration(15).toX(0).toY(64).toZ(3).build());
             SGE.director().queueDirector(DIR_MoveTo.builder().duration(5).toX(0).toY(28).toZ(60).build());
-            SGE.director().queueDirector(DIR_Orbit.builder().duration(8500).secondsPerRevolution(15).build());
+            SGE.director().queueDirector(DIR_Orbit.builder().duration(8500/speed).secondsPerRevolution(15).build());
         }
 
 
@@ -199,12 +200,12 @@ public class X2_Infrastructure extends AbstractXample {
         if(SGE.properties().totalFrames() == 1400){
 
             SGE.director().killAllDirectors();
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(5).toX(0).toY(28).toZ(60).build());
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(7).toX(0).toY(64).toZ(19).build());
-            SGE.director().queueDirector(DIR_MoveTo.builder().duration(3).toX(16f).toY(1.7f).toZ(-16).build());
-            SGE.director().queueDirector(DIR_StillShot.builder().duration(3).build());
-            SGE.director().queueDirector(DIR_PanLeftRight.builder().duration(4.8f).left(Constants.PI/3.2f).build());
-            SGE.director().queueDirector(DIR_PanLeftRight.builder().duration(8.5f).right(Constants.PI/1.9f).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(5/speed).toX(0).toY(28).toZ(60).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(7/speed).toX(0).toY(64).toZ(19).build());
+            SGE.director().queueDirector(DIR_MoveTo.builder().duration(3/speed).toX(16f).toY(1.7f).toZ(-16).build());
+            SGE.director().queueDirector(DIR_StillShot.builder().duration(3/speed).build());
+            SGE.director().queueDirector(DIR_PanLeftRight.builder().duration(4.8f/speed).left(Constants.PI/3.2f).build());
+            SGE.director().queueDirector(DIR_PanLeftRight.builder().duration(8.5f/speed).right(Constants.PI/1.9f).build());
         }
         if(SGE.properties().totalFrames() == 1600){
 

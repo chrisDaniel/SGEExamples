@@ -87,6 +87,7 @@ public class Floor_Flat extends AbstractInfrastructureDrawData implements Drawab
         //Simply unit vectors pointing straight up
         this.normalCollection.push(0, 1, 0);this.normalCollection.push(0, 1, 0);
         this.normalCollection.push(0, 1, 0);this.normalCollection.push(0, 1, 0);
+        this.normalCollection.push(0, 1, 0);this.normalCollection.push(0, 1, 0);
 
         //Textures
         this.textureCollection.push(0, 0, 0);

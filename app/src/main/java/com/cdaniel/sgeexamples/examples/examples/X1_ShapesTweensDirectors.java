@@ -127,8 +127,8 @@ public class X1_ShapesTweensDirectors extends AbstractXample {
             SGE.director().queueDirector(DIR_MoveTo.builder().duration(5).toX(1).toY(20).toZ(-1).build());
             SGE.director().queueDirector(DIR_MoveToContent.builder().contentId(shape4).duration(5).build());
 
-            DIR_FollowBehind followEarth = DIR_FollowBehind.builder().contentIdToFollow(shape2).offsetX(2f).trailDistance(25).build();
-            SGE.director().queueDirector(followEarth);
+            //DIR_FollowBehind followEarth = DIR_FollowBehind.builder().contentIdToFollow(shape2).offsetX(2f).trailDistance(25).build();
+            //SGE.director().queueDirector(followEarth);
         }
     }
 

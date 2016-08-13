@@ -40,7 +40,7 @@ public class Setup_SGE {
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     public static void configureDevTools(){
-        //SGE.devTools().logging_turnOn();
+        SGE.devTools().logging_turnOn();
         //SGE.devTools().logging_includeContentDetail(true);
     }
 }

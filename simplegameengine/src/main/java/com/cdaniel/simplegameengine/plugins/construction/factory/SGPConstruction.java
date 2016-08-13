@@ -2,6 +2,7 @@ package com.cdaniel.simplegameengine.plugins.construction.factory;
 
 import com.cdaniel.simplegameengine.core.SimpleGamePlugin;
 import com.cdaniel.simplegameengine.plugins.construction.infrastructure.builders.InfrastructureBuilder;
+import com.cdaniel.simplegameengine.plugins.construction.models.builders.ModelBuilder;
 import com.cdaniel.simplegameengine.plugins.construction.signage.builders.SignBuilder;
 import com.cdaniel.simplegameengine.plugins.construction.simpleshapes.builders.SimpleShapeBuilder;
 
@@ -18,6 +19,7 @@ public class SGPConstruction implements SimpleGamePlugin {
     private InfrastructureBuilder infrastructureBuilder = new InfrastructureBuilder();
     private SimpleShapeBuilder shapeBuilder = new SimpleShapeBuilder();
     private SignBuilder signBuilder = new SignBuilder();
+    private ModelBuilder modelBuilder = new ModelBuilder();
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
     * Access to Builders
@@ -28,6 +30,7 @@ public class SGPConstruction implements SimpleGamePlugin {
     }
     public SimpleShapeBuilder shapes(){return shapeBuilder;}
     public SignBuilder signs(){return signBuilder; }
+    public ModelBuilder models(){return modelBuilder; }
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
     * Plugin Contract

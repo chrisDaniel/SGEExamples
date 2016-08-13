@@ -9,6 +9,14 @@ import com.cdaniel.simplegameengine.core.Vertex;
 public class SimpleVector implements Vector {
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     * Static normal unit vectors
+     *
+     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    public static SimpleVector xUnit = new SimpleVector(0f, 0f, 0f, 1f, 0f, 0f);
+    public static SimpleVector yUnit = new SimpleVector(0f, 0f, 0f, 0f, 1f, 0f);
+    public static SimpleVector zUnit = new SimpleVector(0f, 0f, 0f, 0f, 0f, 1f);
+
+    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      * Variables
      *
      * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

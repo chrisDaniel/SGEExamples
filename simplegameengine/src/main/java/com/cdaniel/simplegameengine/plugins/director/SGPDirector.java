@@ -41,6 +41,8 @@ public class SGPDirector implements SimpleGamePlugin {
     public void setPause(boolean paused){
         this.paused = paused;
     }
+
+
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
    * Plugin Contract
    *
