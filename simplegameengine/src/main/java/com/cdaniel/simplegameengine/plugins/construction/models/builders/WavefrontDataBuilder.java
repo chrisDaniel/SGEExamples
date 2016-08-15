@@ -148,7 +148,7 @@ public class WavefrontDataBuilder {
                 ObjectExtract extract = extractor.extract(this.modelReader);
                 return extract;
             }
-            else if(StringTools.isEmpty(this.modelString)){
+            else if(!StringTools.isEmpty(this.modelString)){
                 ObjectExtract extract = extractor.extract(this.modelString);
                 return extract;
             }
