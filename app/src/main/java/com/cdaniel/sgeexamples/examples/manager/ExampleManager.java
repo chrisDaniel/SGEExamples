@@ -1,6 +1,7 @@
 package com.cdaniel.sgeexamples.examples.manager;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import com.cdaniel.sgeexamples.examples.examples.X3_PhysicsPendulum;
 import com.cdaniel.sgeexamples.examples.examples.X4_Interactive_Camera;
 import com.cdaniel.sgeexamples.examples.examples.X5_Joystick;
 import com.cdaniel.sgeexamples.examples.examples.X6_FPSLevelPrototype;
+import com.cdaniel.sgeexamples.examples.examples.X7_Import3dModel_Simple;
 import com.cdaniel.sgeexamples.examples.exampleview.ExampleView;
 import com.cdaniel.sgeexamples.examples.examples.AbstractXample;
 import com.cdaniel.simplegameviews.inputcontrols.FingerActivityArea;
@@ -36,6 +38,7 @@ public class ExampleManager {
     public static int EX4_1 = 401;
     public static int EX5_1 = 501;
     public static int EX6_1 = 601;
+    public static int EX7_1 = 701;
 
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,15 +63,6 @@ public class ExampleManager {
     * State Variables
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    private Context currContext;
-
-    public void setContext(Context c) {
-        this.currContext = c;
-    }
-
-    public Context getContext() {
-        return currContext;
-    }
 
     private ExampleView view;
 
@@ -79,6 +73,17 @@ public class ExampleManager {
     public ExampleView getView() {
         return this.view;
     }
+
+    private Context currContext;
+
+    public void setContext(Context c) {
+        this.currContext = c;
+    }
+
+    public Context getContext() {
+        return currContext;
+    }
+
 
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,6 +103,7 @@ public class ExampleManager {
         examplesMap.put(EX4_1, new X4_Interactive_Camera());
         examplesMap.put(EX5_1, new X5_Joystick());
         examplesMap.put(EX6_1, new X6_FPSLevelPrototype());
+        examplesMap.put(EX7_1, new X7_Import3dModel_Simple());
     }
 
     public void activateExample(int exampleId) {

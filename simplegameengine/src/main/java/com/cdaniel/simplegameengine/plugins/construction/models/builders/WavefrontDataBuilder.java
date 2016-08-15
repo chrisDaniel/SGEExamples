@@ -11,7 +11,9 @@ import com.cdaniel.simplegameengine.utils.transformers.Transform_Move;
 import com.cdaniel.simplegameengine.utils.transformers.Transform_Scale;
 import com.cdaniel.simplegametools.objectextractor.ObjectExtract;
 import com.cdaniel.simplegametools.objectextractor.ObjectExtractor;
+import com.cdaniel.simplegametools.tools.StringTools;
 
+import java.io.BufferedReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,26 +22,39 @@ import java.util.Map;
  */
 public class WavefrontDataBuilder {
 
-    String wavefrontData;
-
-    Color color;
-    Texturizer texturizer = Texturizer_simple.noTexture;
-    float mat_diffuse[];
-    float mat_ambient[];
-    float mat_specular[];
-    float mat_emmissive[];
-    Float mat_shininess;
-    float size = 1f;
-    float x;
-    float y;
-    float z;
-
-    public WavefrontDataBuilder(String wavefrontData) {
-        this.wavefrontData = wavefrontData;
-    }
-
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
     * Builder Properties
+    *
+    *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    private String modelString;
+    private BufferedReader modelReader;
+
+    private Color color;
+    private Texturizer texturizer = Texturizer_simple.noTexture;
+    private float mat_diffuse[];
+    private float mat_ambient[];
+    private float mat_specular[];
+    private float mat_emmissive[];
+    private Float mat_shininess;
+    private float size = 1f;
+    private float x;
+    private float y;
+    private float z;
+
+
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+    * Constructors
+    *
+    *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    public WavefrontDataBuilder(String modelString) {
+        this.modelString = modelString;
+    }
+    public WavefrontDataBuilder(BufferedReader modelReader) { this.modelReader = modelReader;}
+
+
+    /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+    * Set Builder Properties
+    *
     *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     public WavefrontDataBuilder x(float x) {
         this.x = x;
@@ -112,7 +127,7 @@ public class WavefrontDataBuilder {
         startNewProperties();
         applyTextureColorProperty();
 
-        ObjectExtract extract = extractObjectData(this.wavefrontData);
+        ObjectExtract extract = extractObjectData();
         ObjectExtractDrawData drawData = new ObjectExtractDrawData(extract);
 
         int contentId = SGE.contents().add(drawData, properties);
@@ -124,13 +139,19 @@ public class WavefrontDataBuilder {
         return contentId;
     }
 
-    public ObjectExtract extractObjectData(String wavefrontData) {
+    public ObjectExtract extractObjectData() {
 
         ObjectExtractor extractor = new ObjectExtractor(ObjectExtractor.ObjectType.WAVEFRONT);
 
         try {
-            ObjectExtract extract = extractor.extract(wavefrontData);
-            return extract;
+            if(modelReader != null){
+                ObjectExtract extract = extractor.extract(this.modelReader);
+                return extract;
+            }
+            else if(StringTools.isEmpty(this.modelString)){
+                ObjectExtract extract = extractor.extract(this.modelString);
+                return extract;
+            }
         } catch (Exception e) {
             //todo - do something
             //do nothing
@@ -141,6 +162,7 @@ public class WavefrontDataBuilder {
     public int build(ObjectExtract extract) {
         return 1;
     }
+
 
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
     * Properties

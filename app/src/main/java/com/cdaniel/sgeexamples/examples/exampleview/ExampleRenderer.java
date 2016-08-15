@@ -21,6 +21,7 @@ public class ExampleRenderer implements GLSurfaceView.Renderer {
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     public ExampleRenderer(){
+
     }
 
 
@@ -39,10 +40,6 @@ public class ExampleRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onDrawFrame(GL10 gl) {
-
-        if(SGE.properties().totalFrames() > 100f){
-
-        }
 
         ExampleManager.getInstance().onFrame();
         SGE.draw(gl);

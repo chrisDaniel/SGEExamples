@@ -47,6 +47,10 @@
             style="@style/ButtonTrigger"
             android:text="Prototype - FPS Level" />
 
+        <Button android:id="@+id/trigger_ex7_1"
+            style="@style/ButtonTrigger"
+            android:text="Object Model - Monkey Face" />
+
     </TableLayout>
 
 </RelativeLayout>

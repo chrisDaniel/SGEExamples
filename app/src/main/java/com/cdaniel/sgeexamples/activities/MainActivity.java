@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         Button ex6_1 = (Button) findViewById(R.id.trigger_ex6_1);
         setupTriggers_event(ex6_1, ExampleManager.EX6_1);
+
+        Button ex7_1 = (Button) findViewById(R.id.trigger_ex7_1);
+        setupTriggers_event(ex7_1, ExampleManager.EX7_1);
     }
     private void setupTriggers_event(Button trigger, final int exampleId){
 

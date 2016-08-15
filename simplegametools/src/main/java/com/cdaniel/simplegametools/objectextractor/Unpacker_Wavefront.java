@@ -4,6 +4,8 @@ import com.cdaniel.simplegametools.tools.CastTools;
 import com.cdaniel.simplegametools.tools.ListTools;
 import com.cdaniel.simplegametools.tools.StringTools;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -28,7 +30,14 @@ class Unpacker_Wavefront implements Unpacker {
     public ObjectExtract unpack(String data) throws ObjectExtractException{
 
         try{
-            return unpackIt(data);
+            ObjectExtract extract = new ObjectExtract();
+            List<String> dataLines = StringTools.stringToLines(data);
+
+            for(String l : dataLines){
+                unpackIt_handleLine(l, extract);
+            }
+            unpackIt_finishUp(extract);
+            return extract;
         }
         catch(UnpackException e){
             throw e.toObjectExtractException();
@@ -37,26 +46,44 @@ class Unpacker_Wavefront implements Unpacker {
             throw new ObjectExtractException(e.getMessage());
         }
     }
+    public ObjectExtract unpack(BufferedReader reader) throws ObjectExtractException{
+
+        try {
+
+            ObjectExtract extract = new ObjectExtract();
+
+            String l;
+            while ((l = reader.readLine()) != null) {
+                unpackIt_handleLine(l, extract);
+            }
+            unpackIt_finishUp(extract);
+            return extract;
+        }
+        catch (IOException e) {
+            throw new ObjectExtractException("Unable to open Model File");
+        }
+        catch(UnpackException e){
+            throw e.toObjectExtractException();
+        }
+        catch(Exception e){
+            throw new ObjectExtractException(e.getMessage());
+        }
+        finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    //log the exception
+                }
+            }
+        }
+    }
 
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * The Unpack
     *
     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-    private ObjectExtract unpackIt(String data){
-
-        ObjectExtract extract = new ObjectExtract();
-
-        List<String> dataLines = StringTools.stringToLines(data);
-
-        for(String l : dataLines){
-
-            unpackIt_handleLine(l, extract);
-        }
-
-        unpackIt_finishUp(extract);
-        return extract;
-    }
     private void unpackIt_handleLine(String l, ObjectExtract extract){
 
         if(StringTools.isEmpty(l)){

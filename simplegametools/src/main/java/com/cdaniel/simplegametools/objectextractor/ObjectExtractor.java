@@ -1,5 +1,7 @@
 package com.cdaniel.simplegametools.objectextractor;
 
+import java.io.BufferedReader;
+
 /**
  * Created by christopher.daniel on 8/13/16.
  */
@@ -44,6 +46,15 @@ public class ObjectExtractor {
 
         try {
             return u.unpack(objectdata);
+        }
+        catch(ObjectExtractException e){
+            throw e;
+        }
+    }
+    public ObjectExtract extract(BufferedReader objectReader) throws ObjectExtractException{
+
+        try {
+            return u.unpack(objectReader);
         }
         catch(ObjectExtractException e){
             throw e;
