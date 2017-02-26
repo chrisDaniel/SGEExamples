@@ -2,9 +2,9 @@
 
 Here lies a Simple Game Engine. 
 
-And then examples using the Simple Game Engine for Android using OpenGL. Please note that this is the first time ive ever done A) android, B)openGL, C) game development.....which means that things are probably done wierd / wrong. 
+And, also collection of examples using the Simple Game Engine (for Android using OpenGL). Please note that this is the first time ive ever done A) android, B)openGL, C) game development.....which means that things are probably done wierd / wrong. 
 
-Im pretty much done with the experimental project, but it ended up being kinda cool...here are some links to YouTube vidoes running the examples in this project.
+Im pretty much done with this experimental project, but it ended up being kinda cool...here are some links to YouTube vidoes running the examples in this project.
 
 [Video 1: Shapes, Tweens, and Camera Direction](https://www.youtube.com/watch?v=LUiqlVIovpU)
 
