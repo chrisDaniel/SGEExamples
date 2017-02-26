@@ -1,8 +1,10 @@
 # Simple Game Engine Examples
 
-Here is a Simple Game Engine and then some examples for Android using OpenGL. Please note that this is the first time ive ever done A) android, B)openGL, C) game development.....which means that things are probably done wierd / wrong. 
+Here lies a Simple Game Engine. 
 
-Im pretty much done with this. There ended up being some cool stuff from it though...here are some links to YouTube vidoes running the examples in this project.
+And then examples using the Simple Game Engine for Android using OpenGL. Please note that this is the first time ive ever done A) android, B)openGL, C) game development.....which means that things are probably done wierd / wrong. 
+
+Im pretty much done with the experimental project, but it ended up being kinda cool...here are some links to YouTube vidoes running the examples in this project.
 
 [Video 1: Shapes, Tweens, and Camera Direction](https://www.youtube.com/watch?v=LUiqlVIovpU)
 
@@ -25,7 +27,7 @@ The point of the engine is to give builder style commands for
    - camera
    - physics
 
-For Video number 2 above, here is the code that generated that scene...
+For Video number 2 above, here is the code that generated that scene...where you see SGE, thats the code accessing the Simple Game Engine. 
 
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     * On Frame
